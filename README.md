@@ -1,32 +1,30 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
-**!! Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(NomeDoProjeto). !!** 
+# Tennis Cup Management (TCM)
 
-**!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: 2020.1_G1_ProjetoPandora!!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número do Grupo**: XX<br>
+**Número do Grupo**: 07<br>
 **Código da Disciplina**: FGA0208-T01<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 15/0132344  |  João Pedro Soares Cirqueira |
+| 15/0136862  |  Lucas Alexandre Fernandes Martins |
+| 15/0141220  |  Matheus de Cristo Doreia Estanislau|
+| 17/0080366  |  Moacir Mascarenha Soares Junior|
+| 17/0044386  |  Renan Cristyan Araújo Pinheiro|
 
-## Sobre 
-Descreva o seu projeto em linhas gerais. 
+## Sobre
+
+Repositório dedicado para o Backend do projeto, a documentação completa se encontra em:  [Documentação](https://unbarqdsw.github.io/2020.1_G7_TCM/).
+
+
+A ideia é fazer uma aplicação (PWA) para gerenciar torneios, organizar cronograma dos torneios,  informações de partidas, cadastros de atletas, informação de atleta e outros. A nossa ideia inicial era alcançar outros esportes mas pensamos em limitar o escopo só em competições de tênis. Inicialmente optamos em desenvolver um PWA por conta da acessibilidade e compatibilidade, também a facilidade do usuário não precisar instalar a aplicação.
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento.
 
 ## Instalação 
-**Linguagens**: xxxxxx<br>
-**Tecnologias**: xxxxxx<br>
+**Linguagens**: Javascript<br>
+**Tecnologias**: Docker, Postgres, Node, ReactJS<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 
