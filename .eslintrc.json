@@ -19,6 +19,21 @@
         "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "class-methods-use-this": "off",
+      "import/prefer-default-export": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
+    },
+    "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
     }
 }
