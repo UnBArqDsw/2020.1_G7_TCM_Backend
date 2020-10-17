@@ -22,6 +22,9 @@ class User {
   email: string
 
   @Column()
+  level: string
+
+  @Column()
   password: string
 
   @Column()
