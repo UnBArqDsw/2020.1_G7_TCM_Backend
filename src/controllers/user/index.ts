@@ -1,21 +1,14 @@
 import { Response, Request } from 'express'
-
-interface User {
-  name: string
-  email: string
-  password: string
-  birthday: Date
-  level: string
-}
+import CreateUserService from '../../services/user/createUserService'
 
 class UserController {
   createUser(request: Request, response: Response) {
     try {
-      const { name, email, password, birthday, level } = request.body
-      const user: User = { name, email, password, birthday, level }
-      response.status(200).json(user)
+      const createUser = new CreateUserService()
+      createUser.execute(request.body)
+      return response.status(400).json(request.body)
     } catch (error) {
-      response.status(400).json(error)
+      return response.status(400).json(error)
     }
   }
 }
