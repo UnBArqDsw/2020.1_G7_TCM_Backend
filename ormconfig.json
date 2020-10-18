@@ -6,7 +6,7 @@
    "password": "tcm",
    "database": "tcm",
    "entities": [
-    "src/models/user/user.ts"
+    "src/models/*/*.ts"
    ],
    "migrations": [
      "./src/database/migrations/*.ts"

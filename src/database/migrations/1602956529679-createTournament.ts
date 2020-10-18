@@ -57,10 +57,22 @@ export class createTournament1602956529679 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            default: 'now()',
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'manager',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'solicitation',
+            type: 'uuid',
+            isNullable: true,
           },
         ],
       }),

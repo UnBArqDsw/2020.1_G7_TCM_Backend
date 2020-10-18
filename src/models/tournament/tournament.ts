@@ -5,7 +5,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm'
+
+import User from '../user/user'
 
 @Entity('tournaments')
 class Tournaments {
@@ -14,6 +18,10 @@ class Tournaments {
 
   @Column()
   name: string
+
+  @OneToOne(() => User)
+  @JoinColumn()
+  manager: User
 
   @Column()
   description: string
@@ -34,7 +42,7 @@ class Tournaments {
   end_date: Date
 
   @Column()
-  estado: string
+  state: string
 
   @Column()
   cidade: string
