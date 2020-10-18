@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { getRepository } from 'typeorm'
 
 import User from '../../models/user/user'
@@ -19,7 +20,10 @@ class CreateUserService {
     nickname,
     birthday,
     level,
-  }: Request): Promise<void> {
+  }: Request): Promise<User> {
+    if (!name || !email || !password || !nickname || !birthday || !level) {
+      throw new Error('Preencha todos os campos')
+    }
     const userRepository = getRepository(User)
 
     const checkEmailExistence = await userRepository.findOne({
@@ -48,6 +52,8 @@ class CreateUserService {
     })
 
     await userRepository.save(user)
+
+    return user
   }
 }
 export default CreateUserService

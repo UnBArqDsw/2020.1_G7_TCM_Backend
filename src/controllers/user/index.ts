@@ -2,13 +2,13 @@ import { Response, Request } from 'express'
 import CreateUserService from '../../services/user/createUserService'
 
 class UserController {
-  createUser(request: Request, response: Response) {
+  async createUser(request: Request, response: Response) {
     try {
       const createUser = new CreateUserService()
-      createUser.execute(request.body)
-      return response.status(400).json(request.body)
+      const user = await createUser.execute(request.body)
+      return response.json(user)
     } catch (error) {
-      return response.status(400).json(error)
+      return response.status(400).json({ error: error.message })
     }
   }
 }
