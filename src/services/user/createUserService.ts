@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import { getRepository } from 'typeorm'
 
+import { hash } from 'bcryptjs'
 import User from '../../models/user/user'
 
 interface Request {
@@ -42,9 +43,11 @@ class CreateUserService {
       throw new Error('Nickname já utilizado, escolha outro.')
     }
 
+    const passwordHash = await hash(password, 8)
+
     const user = userRepository.create({
       name,
-      password,
+      password: passwordHash,
       email,
       level,
       birthday,
