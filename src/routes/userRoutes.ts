@@ -8,8 +8,8 @@ userRoutes.get('/user', (request, response) => {
   response.json({ message: 'hello user' })
 })
 
-userRoutes.post('/user', (request, response) => {
-  userController.createUser(request, response)
+userRoutes.post('/user', async (request, response) => {
+  await userController.createUser(request, response)
 })
 
 export default userRoutes
