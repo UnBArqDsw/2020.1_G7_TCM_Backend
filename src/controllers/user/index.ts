@@ -7,6 +7,14 @@ class UserController {
     const user = await createUser.execute(request.body)
     return response.json(user)
   }
+
+  async findByNickname(
+    nickname: string,
+    response: Response,
+  ): Promise<Response> {
+    console.log(nickname)
+    return response.json(nickname)
+  }
 }
 
 export default new UserController()
