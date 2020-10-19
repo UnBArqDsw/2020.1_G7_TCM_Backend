@@ -1,5 +1,7 @@
 import { Response } from 'express'
 
+import createSessionService from '../../services/session/createSessionService'
+
 interface Request {
   email: string
   password: string
@@ -10,7 +12,8 @@ class SessionController {
     { email, password }: Request,
     response: Response,
   ): Promise<Response> {
-    return response.status(200).json({ email, password })
+    const session = await createSessionService.execute(email, password)
+    return response.status(200).json(session)
   }
 }
 
