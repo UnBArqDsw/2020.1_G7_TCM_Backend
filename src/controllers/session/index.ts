@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { SessionFactory } from '../../services/creator/sessionCreationFactory'
+import { SessionFactory } from '../../services/factories/sessionCreationFactory'
 
 class SessionController {
   public async createSession(
