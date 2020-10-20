@@ -1,19 +1,15 @@
-import { Response } from 'express'
+import { Request, Response } from 'express'
 
-import createSessionService from '../../services/session/createSessionService'
-
-interface Request {
-  email: string
-  password: string
-}
+import CreateSessionService from '../../services/session/createSessionService'
 
 class SessionController {
   public async createSession(
-    { email, password }: Request,
+    request: Request,
     response: Response,
   ): Promise<Response> {
-    const session = await createSessionService.execute(email, password)
-    return response.status(200).json(session)
+    const CreateSession = new CreateSessionService()
+    const session = await CreateSession.execute(request)
+    return response.status(session.statusCode).json(session.body)
   }
 }
 
