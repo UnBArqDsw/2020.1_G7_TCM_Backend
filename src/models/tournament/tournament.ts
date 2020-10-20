@@ -17,10 +17,10 @@ class Tournaments {
   id: string
 
   @Column()
-  name: string
+  manager_id: string
 
-  @OneToOne(() => User)
-  @JoinColumn()
+  @Column(() => User)
+  @JoinColumn({ name: 'manager_id' })
   manager: User
 
   @Column()
@@ -40,6 +40,12 @@ class Tournaments {
 
   @Column()
   end_date: Date
+
+  @Column('varchar', { array: true })
+  solicitation: string[]
+
+  @Column()
+  manager_id: string
 
   @Column()
   state: string
