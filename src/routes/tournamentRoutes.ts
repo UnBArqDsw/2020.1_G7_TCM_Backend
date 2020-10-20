@@ -8,9 +8,9 @@ tournamentRoutes.get('/tournament', userAuth, (request, response) => {
   response.json({ message: 'tournaments' })
 })
 
-tournamentRoutes.post('/tournament', userAuth, (request, response) => {
+tournamentRoutes.post('/tournament', userAuth, async (request, response) => {
   const createTournament = new CreateTournamentController()
-  createTournament.handle(request, response)
+  await createTournament.handle(request, response)
 })
 
 export default tournamentRoutes
