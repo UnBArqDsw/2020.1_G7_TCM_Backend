@@ -1,6 +1,6 @@
-import { Service } from '../protocols/services'
+import { ServiceCreator } from '../creator/serviceCreator'
+import { Service } from '../protocols/IServices'
 import CreateSessionService from '../session/createSessionService'
-import { ServiceCreator } from './serviceCreator'
 
 export class SessionFactory extends ServiceCreator {
   public factoryMethod(): Service {

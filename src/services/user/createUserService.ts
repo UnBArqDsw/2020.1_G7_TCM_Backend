@@ -5,7 +5,7 @@ import { hash } from 'bcryptjs'
 import { Request } from 'express'
 import User from '../../models/user/user'
 import AppError from '../../errors/appError'
-import { Result, Service } from '../protocols/services'
+import { Result, Service } from '../protocols/IServices'
 
 class CreateUserService implements Service {
   public async execute(request: Request): Promise<Result> {

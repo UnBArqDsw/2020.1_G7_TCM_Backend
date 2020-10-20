@@ -1,6 +1,6 @@
-import { Service } from '../protocols/services'
+import { ServiceCreator } from '../creator/serviceCreator'
+import { Service } from '../protocols/IServices'
 import SearchByNicknameService from '../user/searchByNicknameService'
-import { ServiceCreator } from './serviceCreator'
 
 export class SearchUserFactory extends ServiceCreator {
   public factoryMethod(): Service {

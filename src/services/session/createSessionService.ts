@@ -5,7 +5,7 @@ import { sign } from 'jsonwebtoken'
 import { Request } from 'express'
 import AppError from '../../errors/appError'
 import User from '../../models/user/user'
-import { Result, Service } from '../protocols/services'
+import { Result, Service } from '../protocols/IServices'
 
 class CreateSessionService implements Service {
   public async execute(request: Request): Promise<Result> {
