@@ -1,14 +1,16 @@
 import { Router } from 'express'
-import tournamentController from '../controllers/tournament/index'
+import { CreateTournamentController } from '../controllers/tournament/createTournamentController'
+import userAuth from '../middlewares/userAuth'
 
 const tournamentRoutes = Router()
 
-tournamentRoutes.get('/tournament', (request, response) => {
+tournamentRoutes.get('/tournament', userAuth, (request, response) => {
   response.json({ message: 'tournaments' })
 })
 
-tournamentRoutes.post('/tournament', (request, response) => {
-  tournamentController.createTournament(request, response)
+tournamentRoutes.post('/tournament', userAuth, (request, response) => {
+  const createTournament = new CreateTournamentController()
+  createTournament.handle(request, response)
 })
 
 export default tournamentRoutes
