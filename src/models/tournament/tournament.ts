@@ -17,11 +17,14 @@ class Tournaments {
   id: string
 
   @Column()
-  manager_id: string
+  manager: string
 
-  @Column(() => User)
-  @JoinColumn({ name: 'manager_id' })
-  manager: User
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'manager' })
+  manager_id: User
+
+  @Column()
+  name: string
 
   @Column()
   description: string
@@ -45,10 +48,7 @@ class Tournaments {
   solicitation: string[]
 
   @Column()
-  manager_id: string
-
-  @Column()
-  state: string
+  estado: string
 
   @Column()
   cidade: string

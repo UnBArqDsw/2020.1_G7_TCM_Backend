@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { Request } from 'express'
 import { getRepository } from 'typeorm'
@@ -8,7 +9,6 @@ import Tournaments from '../../models/tournament/tournament'
 export class CreatePlayoff implements Service {
   public async execute(request: Request): Promise<Result> {
     const manager: string = request.user.id
-    const solicitation: string[] = [request.user.id]
     const {
       name,
       description,
@@ -17,7 +17,7 @@ export class CreatePlayoff implements Service {
       players_quantity,
       start_date,
       end_date,
-      state,
+      estado,
       cidade,
       endereco,
     } = request.body
@@ -30,7 +30,7 @@ export class CreatePlayoff implements Service {
       'players_quantity',
       'start_date',
       'end_date',
-      'state',
+      'estado',
       'cidade',
       'endereco',
     ]
@@ -51,16 +51,14 @@ export class CreatePlayoff implements Service {
       players_quantity,
       start_date,
       end_date,
-      state,
+      estado,
       cidade,
       endereco,
       manager,
-      solicitation,
     })
 
-    console.error()
-
     await playoffRepository.save(playoff)
+
     return { body: { playoff }, statusCode: 200 }
   }
 }
