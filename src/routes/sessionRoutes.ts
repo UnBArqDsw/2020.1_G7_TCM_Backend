@@ -1,10 +1,11 @@
 import { Router, Request, Response } from 'express'
-import SessionController from '../controllers/session/index'
+import { CreateSessionController } from '../controllers/session/createSessionController'
 
 const sessionRoutes = Router()
 
 sessionRoutes.post('/session', async (request: Request, response: Response) => {
-  await SessionController.createSession(request, response)
+  const CreateSession = new CreateSessionController()
+  await CreateSession.handle(request, response)
 })
 
 export default sessionRoutes
