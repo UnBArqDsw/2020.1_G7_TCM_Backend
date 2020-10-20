@@ -1,19 +1,17 @@
-import { Router, response } from 'express'
+import { Router, Request, Response } from 'express'
 
 import userController from '../controllers/user'
 
 const userRoutes = Router()
 
-userRoutes.get('/user', (request, response) => {
-  response.json({ message: 'hello user' })
-})
-
-userRoutes.post('/user', async (request, response) => {
+userRoutes.post('/user', async (request: Request, response: Response) => {
   await userController.createUser(request, response)
 })
-userRoutes.get('/user/:nickname', async (request, response) => {
-  const { nickname } = request.params
-  await userController.findByNickname(nickname, response)
-})
+userRoutes.get(
+  '/user/:nickname',
+  async (request: Request, response: Response) => {
+    await userController.findByNickname(request, response)
+  },
+)
 
 export default userRoutes

@@ -1,22 +1,21 @@
 import { getRepository } from 'typeorm'
+import { Request } from 'express'
 import User from '../../models/user/user'
 import AppError from '../../errors/appError'
+import { Result, Service } from '../protocols/services'
 
-interface Result {
-  nickname?: string
-  name: string
-}
-
-class SearchByNicknameService {
-  public async execute(nickname: string): Promise<Result> {
+class SearchByNicknameService implements Service {
+  public async execute(request: Request): Promise<Result> {
+    const { nickname } = request.params
     const userRepository = getRepository(User)
     const user = await userRepository.findOne({ where: { nickname } })
     if (!user) {
-      throw new AppError('Usuário não encontado', 400)
+      throw new AppError('User not found', 400)
     }
+    const { name, id } = user
     return {
-      name: user.name,
-      nickname: user.nickname,
+      body: { id, name, nickname: user.nickname },
+      statusCode: 200,
     }
   }
 }

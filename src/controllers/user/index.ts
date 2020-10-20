@@ -5,17 +5,17 @@ import SearchByNicknameService from '../../services/user/searchByNicknameService
 class UserController {
   async createUser(request: Request, response: Response): Promise<Response> {
     const createUser = new CreateUserService()
-    const user = await createUser.execute(request.body)
-    return response.json(user)
+    const user = await createUser.execute(request)
+    return response.status(user.statusCode).json(user.body)
   }
 
   async findByNickname(
-    nickname: string,
+    request: Request,
     response: Response,
   ): Promise<Response> {
     const searchByNickmane = new SearchByNicknameService()
-    const user = await searchByNickmane.execute(nickname)
-    return response.json(user)
+    const user = await searchByNickmane.execute(request)
+    return response.status(user.statusCode).json(user.body)
   }
 }
 
