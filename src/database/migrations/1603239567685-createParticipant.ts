@@ -27,6 +27,16 @@ export class createParticipant1603239567685 implements MigrationInterface {
             name: 'players',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'date',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'date',
+            default: 'now()',
+          },
         ],
       }),
       true,
