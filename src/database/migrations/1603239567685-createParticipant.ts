@@ -14,6 +14,11 @@ export class createParticipant1603239567685 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'status',
+            type: 'bool',
+            default: false,
+          },
+          {
             name: 'participant_type',
             type: 'char',
             isNullable: true,
