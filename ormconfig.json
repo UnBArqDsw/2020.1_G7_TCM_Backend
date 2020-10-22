@@ -5,6 +5,9 @@
    "username": "tcm",
    "password": "tcm",
    "database": "tcm",
+   "entities": [
+    "./src/models/*/*.ts"
+   ],
    "migrations": [
      "./src/database/migrations/*.ts"
    ],
