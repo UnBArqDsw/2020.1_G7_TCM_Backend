@@ -43,6 +43,14 @@ export class CreatePlayoff implements Service {
 
     const playoffRepository = getRepository(Tournaments)
 
+    const checkTournaments = await playoffRepository.findOne({
+      where: { name },
+    })
+
+    if (checkTournaments) {
+      throw new AppError('Tournament name already exists')
+    }
+
     const playoff = playoffRepository.create({
       name,
       description,
