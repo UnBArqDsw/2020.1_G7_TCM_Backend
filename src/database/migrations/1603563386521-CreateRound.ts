@@ -22,6 +22,16 @@ export class CreateRound1603563386521 implements MigrationInterface {
             name: 'name',
             type: 'varchar',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     )

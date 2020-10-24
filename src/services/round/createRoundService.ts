@@ -6,7 +6,7 @@ import { Result, Service } from '../protocols/IServices'
 import AppError from '../../errors/appError'
 import Round from '../../models/round/round'
 
-export class CreateRound implements Service {
+export class CreateRoundService implements Service {
   public async execute(request: Request): Promise<Result> {
     const { name, status } = request.body
 

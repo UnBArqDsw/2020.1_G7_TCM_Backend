@@ -1,19 +1,13 @@
 /* eslint-disable no-useless-constructor */
 import { Response, Request } from 'express'
 import { Controller } from '../protocols/IController'
-
-interface Round {
-  name: string
-  status: string
-}
+import { CreateRoundService } from '../../services/round/createRoundService'
 
 export class CreateRoundController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
     // const user = new CreateUserFactory()
-    const { name, status } = request.body
-    const round: Round = { name, status }
-
-    return response.status(200).json(round)
+    const create = new CreateRoundService()
+    const { body, statusCode } = await create.execute(request)
+    return response.status(statusCode).json(body)
   }
 }
-export default new CreateRoundController()
