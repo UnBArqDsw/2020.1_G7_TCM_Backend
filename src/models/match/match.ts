@@ -21,6 +21,17 @@ class Matchs {
   status: string
 
   @Column()
+  winner: string
+
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'winner' })
+  winner_id: User
+
+  @OneToOne(() => Participants)
+  @JoinColumn({ name: 'winner' })
+  winner_id2: Participants
+
+  @Column()
   player1: string
 
   @Column()
