@@ -23,6 +23,11 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             type: 'char',
           },
           {
+            name: 'winner',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
             name: 'player1',
             type: 'uuid',
             isNullable: true,
@@ -90,9 +95,31 @@ export class CreateMatch1603814491469 implements MigrationInterface {
         onDelete: 'SET NULL',
       }),
     )
+    await queryRunner.createForeignKey(
+      'matchs',
+      new TableForeignKey({
+        name: 'winner_id',
+        referencedColumnNames: ['id'],
+        columnNames: ['winner'],
+        referencedTableName: 'users',
+        onDelete: 'SET NULL',
+      }),
+    )
+    await queryRunner.createForeignKey(
+      'matchs',
+      new TableForeignKey({
+        name: 'winner_id2',
+        referencedColumnNames: ['id'],
+        columnNames: ['winner'],
+        referencedTableName: 'participants',
+        onDelete: 'SET NULL',
+      }),
+    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('matchs', 'winner_id')
+    await queryRunner.dropForeignKey('matchs', 'winner_id2')
     await queryRunner.dropForeignKey('matchs', 'participant2_id')
     await queryRunner.dropForeignKey('matchs', 'participant1_id')
     await queryRunner.dropForeignKey('matchs', 'player2_id')
