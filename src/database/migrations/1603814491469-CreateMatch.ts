@@ -19,6 +19,11 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'tournament_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
             name: 'status',
             type: 'char',
           },
@@ -36,6 +41,11 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             name: 'player2',
             type: 'uuid',
             isNullable: true,
+          },
+          {
+            name: 'local',
+            type: 'varchar',
+            isNullable: true
           },
           {
             name: 'score',
@@ -102,6 +112,16 @@ export class CreateMatch1603814491469 implements MigrationInterface {
         referencedColumnNames: ['id'],
         columnNames: ['winner'],
         referencedTableName: 'users',
+        onDelete: 'SET NULL',
+      }),
+    )
+    await queryRunner.createForeignKey(
+      'matchs',
+      new TableForeignKey({
+        name: 'tournament_id',
+        referencedColumnNames: ['id'],
+        columnNames: ['tournament_id'],
+        referencedTableName: 'tournaments',
         onDelete: 'SET NULL',
       }),
     )
