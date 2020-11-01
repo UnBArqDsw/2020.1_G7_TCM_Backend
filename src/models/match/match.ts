@@ -11,6 +11,7 @@ import {
 
 import User from '../user/user'
 import Participants from '../participant/participant'
+import Tournaments from '../tournament/tournament'
 
 @Entity('matchs')
 class Matchs {
@@ -22,6 +23,9 @@ class Matchs {
 
   @Column()
   winner: string
+  
+  @Column()
+  local: string
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'winner' })
@@ -30,6 +34,10 @@ class Matchs {
   @OneToOne(() => Participants)
   @JoinColumn({ name: 'winner' })
   winner_id2: Participants
+
+  @OneToOne(() => Tournaments)
+  @JoinColumn({ name: 'tournament_id' })
+  tournament_id: Tournaments
 
   @Column()
   player1: string
@@ -63,4 +71,4 @@ class Matchs {
   updated_at: Date
 }
 
-export default Matchs
+export default Matchs;
