@@ -28,6 +28,18 @@ export class createParticipant1603239567685 implements MigrationInterface {
             type: 'uuid',
           },
           {
+            name: 'tournament_points',
+            type: 'integer',
+          },
+          {
+            name: 'win_count',
+            type: 'integer',
+          },
+          {
+            name: 'loss_count',
+            type: 'integer',
+          },
+          {
             name: 'created_at',
             type: 'date',
             default: 'now()',
