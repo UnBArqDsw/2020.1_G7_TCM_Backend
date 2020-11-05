@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import { Request } from 'express'
 import { getRepository } from 'typeorm'
-import { ResultMatch } from '../protocols/IServices'
+import { ResultMatch } from './template/interfaces'
 import AppError from '../../errors/appError'
 import Matchs from '../../models/match/match'
 import Tournaments from '../../models/tournament/tournament'
@@ -48,7 +48,7 @@ class CreateMatchService {
                 tournament_id: tournament_id,
                 player1: player_1.id,
                 player2: player_2.id,
-                status: true 
+                valid: true 
             } 
             
         } catch (error) {
@@ -58,7 +58,7 @@ class CreateMatchService {
     }
 
 
-    return { status: false  }
+    return { valid: false  }
   }
 }
 
