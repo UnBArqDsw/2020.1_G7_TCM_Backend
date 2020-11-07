@@ -1,10 +1,11 @@
 export interface ResultMatch {
     match_id?: string
     tournament_id?: string
-    player1?: string
-    player2?: string
+    player1?: object
+    player2?: object
     status?:string
     score?:string
+    winner?:string
     valid?: boolean
     statusCode?:number
 
