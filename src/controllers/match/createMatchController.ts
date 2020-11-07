@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import CreateFriendlyMatchService from '../../services/match/createFriendlyMatchService'
-// import CreateMatchService from '../../services/match/createMatchService'
+import CreateMatchService from '../../services/match/createMatchService'
 
 import { Controller } from '../protocols/IController'
 
@@ -13,12 +13,10 @@ export default class CreateFriendlyMatchController implements Controller {
 }
 
 // export default class CreateFriendlyMatchController implements Controller {
-//     async handle(request: Request, response: Response): Promise<Response> {
-//       const create = new CreateMatchService()
-//       const {tournament_id ,participant1,participant2} = request.body
-//       const result = await create.execute(tournament_id ,participant1,participant2)
-//       console.log(result)
-//       return response.status(200).json(result)
-//     }
+//   async handle(request: Request, response: Response): Promise<Response> {
+//     const {tournament_id,participant1_id, participant2_id} =request.body;
+//     const create = new CreateMatchService()
+//     const result = await create.execute(tournament_id,participant1_id, participant2_id)
+//     return response.status(200).json(result)
 //   }
-  
+// }

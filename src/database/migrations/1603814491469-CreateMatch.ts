@@ -28,17 +28,32 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             type: 'char',
           },
           {
-            name: 'winner',
+            name: 'user_winner_id',
             type: 'uuid',
             isNullable: true,
           },
           {
-            name: 'player1',
+            name: 'participant_winner_id',
             type: 'uuid',
             isNullable: true,
           },
           {
-            name: 'player2',
+            name: 'player1_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'player2_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'participant1_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'participant2_id',
             type: 'uuid',
             isNullable: true,
           },
@@ -70,7 +85,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
       new TableForeignKey({
         name: 'player1_id',
         referencedColumnNames: ['id'],
-        columnNames: ['player1'],
+        columnNames: ['player1_id'],
         referencedTableName: 'users',
         onDelete: 'SET NULL',
       }),
@@ -80,7 +95,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
       new TableForeignKey({
         name: 'player2_id',
         referencedColumnNames: ['id'],
-        columnNames: ['player2'],
+        columnNames: ['player2_id'],
         referencedTableName: 'users',
         onDelete: 'SET NULL',
       }),
@@ -90,7 +105,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
       new TableForeignKey({
         name: 'participant1_id',
         referencedColumnNames: ['id'],
-        columnNames: ['player1'],
+        columnNames: ['participant1_id'],
         referencedTableName: 'participants',
         onDelete: 'SET NULL',
       }),
@@ -100,7 +115,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
       new TableForeignKey({
         name: 'participant2_id',
         referencedColumnNames: ['id'],
-        columnNames: ['player2'],
+        columnNames: ['participant2_id'],
         referencedTableName: 'participants',
         onDelete: 'SET NULL',
       }),
@@ -108,9 +123,9 @@ export class CreateMatch1603814491469 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'matchs',
       new TableForeignKey({
-        name: 'winner_id',
+        name: 'user_winner_id',
         referencedColumnNames: ['id'],
-        columnNames: ['winner'],
+        columnNames: ['user_winner_id'],
         referencedTableName: 'users',
         onDelete: 'SET NULL',
       }),
@@ -128,9 +143,9 @@ export class CreateMatch1603814491469 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'matchs',
       new TableForeignKey({
-        name: 'winner_id2',
+        name: 'participant_winner_id',
         referencedColumnNames: ['id'],
-        columnNames: ['winner'],
+        columnNames: ['participant_winner_id'],
         referencedTableName: 'participants',
         onDelete: 'SET NULL',
       }),
