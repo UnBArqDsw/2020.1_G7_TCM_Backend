@@ -18,10 +18,10 @@ class CreateMatchService {
     const tournament_aux = await tournamentRepository.findOne(tournament_id);
     const player1_aux = await participantRepository.findOne(id_palyer_1);
     const player2_aux = await participantRepository.findOne(id_palyer_2);
+    console.log(player1_aux)
 
     if(typeof(tournament_aux)!= 'undefined'  && typeof(player1_aux) != 'undefined' && typeof(player2_aux) != 'undefined'){
-        console.log("Chegou1")
-        
+
         let tournament = new Tournaments();
         let player_1 = new Participant();
         let player_2 = new Participant();
@@ -32,22 +32,23 @@ class CreateMatchService {
         
 
         let match_aux = new Matchs();
-        match_aux.tournament_id = tournament.id;
-        match_aux.participant1_id = player_1.id;
-        match_aux.participant2_id = player_2.id;
+        match_aux.tournament_id = tournament;
+        match_aux.participant1_id = player_1;
+        match_aux.participant2_id = player_2;
         match_aux.status = 'C'
         
         const matchRepository = getRepository(Matchs);
         
         try {
-            console.log(match_aux)
+            
             const match = matchRepository.create(match_aux);
+            console.log("aux",match)
             await matchRepository.save(match);
             return {
                 match_id: match.id,
                 tournament_id: tournament_id,
-                player1: player_1.id,
-                player2: player_2.id,
+                player1: player_1,
+                player2: player_2,
                 valid: true 
             } 
             
