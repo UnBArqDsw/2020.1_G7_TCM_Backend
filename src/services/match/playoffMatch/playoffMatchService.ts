@@ -2,6 +2,7 @@ import {ServiceMatch} from '../template/match'
 import {ResultMatch, PostResult} from '../template/interfaces'
 import User from '../../../models/user/user';
 import {getRepository} from 'typeorm'
+import Participant from '../../../models/participant/participant';
 
 
 
@@ -10,14 +11,20 @@ class PlayoffMatchService extends ServiceMatch{
     
     public async getMatch(id: string):Promise<ResultMatch>{
 
-            const match = await this.matchRepository.findOne(id);
+            const match = await this.matchRepository.findOne(id,{ relations: ['participant1_id','participant2_id']})
             if(typeof(match)!= 'undefined'){
+                console.log("------------------match=-----------")
+
+                const participant1 = {id: match.participant1_id.id, name: match.participant2_id.players}
+                const participant2 = { id: match.participant2_id.id, name: match.participant2_id.players}
+
                 return {
                     match_id: match.id,
-                    player1: String(match.participant1_id),
-                    player2: String(match.participant2_id),
+                    player1: participant1,
+                    player2: participant2,
                     status: match.status,
                     score:match.score,
+                    // winner: match.participant_winner_id,
                     statusCode: 200
                 }
             }else{
@@ -28,15 +35,15 @@ class PlayoffMatchService extends ServiceMatch{
     }
 
     public async addResult(match_id:string, score:string, winner_id:string):Promise<PostResult>{
-        const userRepository = getRepository(User);
+        const participantRepository = getRepository(Participant);
 
             let match = await this.matchRepository.findOne(match_id);
-            const user = await userRepository.findOne(winner_id);
+            const participant = await participantRepository.findOne(winner_id);
 
-            if(typeof(match)!= 'undefined' && typeof(user)!='undefined'){
-                const user = new User();
+            if(typeof(match)!= 'undefined' && typeof(participant)!='undefined'){
+                // const participant = new participant();
                 match.score = score;
-                match.winner_id = user
+                match.participant_winner_id = participant;
                 match.status = 'F'
 
                 try {
@@ -48,7 +55,6 @@ class PlayoffMatchService extends ServiceMatch{
                     return {message: "Erro ao salvar!", statusCode: 500}   
                 }
 
-                
             }
 
             return {message: "Erro ao adicionar resultado", statusCode: 500}
