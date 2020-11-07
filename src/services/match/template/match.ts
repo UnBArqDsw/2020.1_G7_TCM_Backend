@@ -10,8 +10,8 @@ export abstract class ServiceMatch{
         const match = {
             match_id: "",
             tournament_id: "",
-            player1: "",
-            player2: "",
+            player1: {} ,
+            player2: {},
             status: ""
         }
         return match;
