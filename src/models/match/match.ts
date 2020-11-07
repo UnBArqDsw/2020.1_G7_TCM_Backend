@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  RelationId,
 } from 'typeorm'
 
 import User from '../user/user'
@@ -22,43 +23,35 @@ class Matchs {
   status: string
 
   @Column()
-  winner: string
-  
-  @Column()
   local: string
 
   @OneToOne(() => User)
-  @JoinColumn({ name: 'winner' })
-  winner_id: User
+  @JoinColumn({ name: 'user_winner_id' })
+  user_winner_id: User
 
   @OneToOne(() => Participants)
-  @JoinColumn({ name: 'winner' })
-  winner_id2: Participants
+  @JoinColumn({ name: 'participant_winner_id' })
+  participant_winner_id: Participants
 
   @OneToOne(() => Tournaments)
   @JoinColumn({ name: 'tournament_id' })
   tournament_id: Tournaments
 
-  @Column()
-  player1: string
-
-  @Column()
-  player2: string
 
   @OneToOne(() => User)
-  @JoinColumn({ name: 'player1' })
+  @JoinColumn({ name: 'player1_id' })
   player1_id: User
 
   @OneToOne(() => User)
-  @JoinColumn({ name: 'player2' })
+  @JoinColumn({ name: 'player2_id' })
   player2_id: User
 
   @OneToOne(() => Participants)
-  @JoinColumn({ name: 'player1' })
+  @JoinColumn({ name: 'participant1_id' })
   participant1_id: Participants
 
   @OneToOne(() => Participants)
-  @JoinColumn({ name: 'player2' })
+  @JoinColumn({ name: 'participant2_id' })
   participant2_id: Participants
 
   @Column()
