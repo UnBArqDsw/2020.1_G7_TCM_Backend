@@ -5,11 +5,11 @@ import { Controller } from '../protocols/IController';
 export  class PlayoffGetMatchController implements Controller {
     async handle(request: Request, response: Response): Promise<Response> {
       const {id} = request.param;
-      console.log(id)
+      // console.log(id)
       const match = new PlayoffMatchService()
       const result = await match.getMatch(id);
-      console.log(result)
-      return response.status(200).json(result)
+      // console.log(result)
+      return response.status(Number(result.statusCode)).json(result)
     }
 }
 

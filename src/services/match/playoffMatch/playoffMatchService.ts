@@ -11,7 +11,7 @@ class PlayoffMatchService extends ServiceMatch{
     
     public async getMatch(id: string):Promise<ResultMatch>{
 
-            const match = await this.matchRepository.findOne(id,{ relations: ['participant1_id','participant2_id']})
+            const match = await this.matchRepository.findOne(id,{ relations: ['participant1_id','participant2_id','participant_winner_id']})
             if(typeof(match)!= 'undefined'){
                 console.log("------------------match=-----------")
 
@@ -24,7 +24,7 @@ class PlayoffMatchService extends ServiceMatch{
                     player2: participant2,
                     status: match.status,
                     score:match.score,
-                    // winner: match.participant_winner_id,
+                    winner: (match.participant_winner_id==null ? '': String(match.participant_winner_id.id)),
                     statusCode: 200
                 }
             }else{

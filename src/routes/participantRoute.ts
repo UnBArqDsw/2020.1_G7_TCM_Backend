@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import CreateParticipantController from '../controllers/participant/createParticipantController'
 import SearchParticipantController from '../controllers/participant/searchParticipantController'
-import UpdateParticipantController from '../controllers/participant/updateParticipantController'
+// import UpdateParticipantController from '../controllers/participant/updateParticipantController'
 import userAuth from '../middlewares/userAuth'
 
 const participantController = Router()
@@ -16,9 +16,9 @@ participantController.post('/participant', async (request, response) => {
   await createParticipant.handle(request, response)
 })
 
-participantController.post('/participant/:id', async (request, response) => {
-  const updateParticipant = new UpdateParticipantController()
-  await updateParticipant.handle(request, response)
-})
+// participantController.post('/participant/:id', async (request, response) => {
+//   const updateParticipant = new UpdateParticipantController()
+//   await updateParticipant.handle(request, response)
+// })
 
 export default participantController
