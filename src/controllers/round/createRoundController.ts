@@ -7,7 +7,8 @@ export class CreateRoundController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
     // const user = new CreateUserFactory()
     const create = new CreateRoundService()
-    const { body, statusCode } = await create.execute(request)
+    const { name, status } = request.body
+    const { body, statusCode } = await create.execute(name, status)
     return response.status(statusCode).json(body)
   }
 }
