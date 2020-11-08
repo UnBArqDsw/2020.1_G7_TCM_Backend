@@ -60,7 +60,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
           {
             name: 'local',
             type: 'varchar',
-            isNullable: true
+            isNullable: true,
           },
           {
             name: 'score',
