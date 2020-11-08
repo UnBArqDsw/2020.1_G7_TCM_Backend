@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
 export class CreateRound1603563386521 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -30,7 +25,6 @@ export class CreateRound1603563386521 implements MigrationInterface {
           {
             name: 'matchs_ids',
             type: 'uuid',
-            isArray: true,
             isNullable: true,
           },
           {
@@ -46,16 +40,6 @@ export class CreateRound1603563386521 implements MigrationInterface {
         ],
       }),
     )
-    // await queryRunner.createForeignKey(
-    //   'rounds',
-    //   new TableForeignKey({
-    //     name: 'matchs_ids',
-    //     referencedColumnNames: ['id'],
-    //     columnNames: ['matchs_ids'],
-    //     referencedTableName: 'matchs',
-    //     onDelete: 'SET NULL',
-    //   }),
-    // )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
