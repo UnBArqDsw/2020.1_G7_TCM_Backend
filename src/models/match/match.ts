@@ -35,6 +35,7 @@ class Matchs {
   participant_winner_id: Participants
 
   @ManyToOne(() => Round)
+  @JoinColumn({ name: 'round_id' })
   round_id: Round
 
   @OneToOne(() => User)

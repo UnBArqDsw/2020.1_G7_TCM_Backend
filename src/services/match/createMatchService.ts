@@ -32,7 +32,7 @@ class CreateMatchService {
         
 
         let match_aux = new Matchs();
-        match_aux.tournament_id = tournament;
+        // match_aux.tournament_id = tournament;
         match_aux.participant1_id = player_1;
         match_aux.participant2_id = player_2;
         match_aux.status = 'C'

@@ -20,8 +20,8 @@ class Round {
   @Column()
   name: string
 
-  // @OneToMany(() => Matchs, match => match.round_id)
-  // matchs_ids: Matchs[]
+  @OneToMany(() => Matchs, match => match.round_id)
+  matchs_ids: Matchs[]
 
   @CreateDateColumn()
   created_at: Date
