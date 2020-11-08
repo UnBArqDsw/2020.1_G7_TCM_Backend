@@ -10,7 +10,7 @@ tournamentRoutes.get('/tournament', userAuth, async (request, response) => {
   await tournament.handle(request, response)
 })
 
-tournamentRoutes.post('/tournament', userAuth, async (request, response) => {
+tournamentRoutes.post('/tournament', async (request, response) => {
   const createTournament = new CreateTournamentController()
   await createTournament.handle(request, response)
 })
