@@ -7,10 +7,10 @@ import {
 
 export class CreateRound1603563386521 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
+    // await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
     await queryRunner.createTable(
       new Table({
-        name: 'round',
+        name: 'rounds',
         columns: [
           {
             name: 'id',
@@ -28,13 +28,9 @@ export class CreateRound1603563386521 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'participants',
-            type: 'uuid',
-            isNullable: true,
-          },
-          {
             name: 'matchs_ids',
             type: 'uuid',
+            isArray: true,
             isNullable: true,
           },
           {
@@ -50,29 +46,20 @@ export class CreateRound1603563386521 implements MigrationInterface {
         ],
       }),
     )
-    await queryRunner.createForeignKey(
-      'round',
-      new TableForeignKey({
-        name: 'participants',
-        referencedColumnNames: ['id'],
-        columnNames: ['participants'],
-        referencedTableName: 'participants',
-        onDelete: 'SET NULL',
-      }),
-    )
-    await queryRunner.createForeignKey(
-      'round',
-      new TableForeignKey({
-        name: 'matchs_ids',
-        referencedColumnNames: ['id'],
-        columnNames: ['matchs_ids'],
-        referencedTableName: 'matchs',
-        onDelete: 'SET NULL',
-      }),
-    )
+    // await queryRunner.createForeignKey(
+    //   'rounds',
+    //   new TableForeignKey({
+    //     name: 'matchs_ids',
+    //     referencedColumnNames: ['id'],
+    //     columnNames: ['matchs_ids'],
+    //     referencedTableName: 'matchs',
+    //     onDelete: 'SET NULL',
+    //   }),
+    // )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('round')
+    await queryRunner.dropForeignKey('rounds', 'matchs_ids')
+    await queryRunner.dropTable('rounds')
   }
 }

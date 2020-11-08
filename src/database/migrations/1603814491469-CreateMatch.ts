@@ -19,7 +19,7 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'tournament_id',
+            name: 'round_id',
             type: 'uuid',
             isNullable: true,
           },
@@ -133,10 +133,10 @@ export class CreateMatch1603814491469 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'matchs',
       new TableForeignKey({
-        name: 'tournament_id',
+        name: 'round_id',
         referencedColumnNames: ['id'],
-        columnNames: ['tournament_id'],
-        referencedTableName: 'tournaments',
+        columnNames: ['round_id'],
+        referencedTableName: 'rounds',
         onDelete: 'SET NULL',
       }),
     )

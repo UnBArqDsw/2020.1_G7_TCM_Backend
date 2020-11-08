@@ -5,9 +5,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm'
+import Matchs from '../match/match'
 
-@Entity('round')
+@Entity('rounds')
 class Round {
   @PrimaryGeneratedColumn('uuid')
   id: string
@@ -17,6 +19,9 @@ class Round {
 
   @Column()
   name: string
+
+  // @OneToMany(() => Matchs, match => match.round_id)
+  // matchs_ids: Matchs[]
 
   @CreateDateColumn()
   created_at: Date

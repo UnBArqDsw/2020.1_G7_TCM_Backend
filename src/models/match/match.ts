@@ -8,11 +8,12 @@ import {
   OneToOne,
   JoinColumn,
   RelationId,
+  ManyToOne,
 } from 'typeorm'
 
 import User from '../user/user'
 import Participants from '../participant/participant'
-import Tournaments from '../tournament/tournament'
+import Round from '../round/round'
 
 @Entity('matchs')
 class Matchs {
@@ -33,10 +34,8 @@ class Matchs {
   @JoinColumn({ name: 'participant_winner_id' })
   participant_winner_id: Participants
 
-  @OneToOne(() => Tournaments)
-  @JoinColumn({ name: 'tournament_id' })
-  tournament_id: Tournaments
-
+  @ManyToOne(() => Round)
+  round_id: Round
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'player1_id' })
@@ -64,4 +63,4 @@ class Matchs {
   updated_at: Date
 }
 
-export default Matchs;
+export default Matchs
