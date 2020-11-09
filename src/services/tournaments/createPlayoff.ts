@@ -6,7 +6,7 @@ import { Result, Service } from '../protocols/IServices'
 import AppError from '../../errors/appError'
 import Tournaments from '../../models/tournament/tournament'
 
-export class CreatePlayoff implements Service {
+export class CreatePlayoffService implements Service {
   public async execute(request: Request): Promise<Result> {
     const manager: string = request.user.id
     const {
@@ -42,6 +42,14 @@ export class CreatePlayoff implements Service {
     }
 
     const playoffRepository = getRepository(Tournaments)
+
+    const checkTournaments = await playoffRepository.findOne({
+      where: { name },
+    })
+
+    if (checkTournaments) {
+      throw new AppError('Tournament name already exists')
+    }
 
     const playoff = playoffRepository.create({
       name,
