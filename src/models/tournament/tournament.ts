@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm'
 
 import User from '../user/user'
@@ -45,7 +46,11 @@ class Tournaments {
   end_date: Date
 
   @Column('varchar', { array: true })
-  solicitation: string[]
+  solicitation: User[]
+
+  @OneToMany(() => User, user => user.id)
+  @JoinColumn({ name: 'soliciation' })
+  solicitation_id: string
 
   @Column()
   estado: string

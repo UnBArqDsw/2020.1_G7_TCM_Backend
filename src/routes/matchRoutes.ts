@@ -6,6 +6,7 @@ import { PlayoffGetMatchController } from '../controllers/match/searchPlayoffMat
 import { PlayoffGetAddResultController } from '../controllers/match/addResultMatch'
 import { FriendlyGetMatchController } from '../controllers/friendlymatch/searchFriendlyMatch'
 import { FriendlyAddResultController } from '../controllers/friendlymatch/addResultMatch'
+// import userAuth from '../middlewares/userAuth'
 
 const matchRoutes = Router()
 

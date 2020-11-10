@@ -4,15 +4,23 @@ import SearchParticipantController from '../controllers/participant/searchPartic
 
 const participantController = Router()
 
-participantController.get('/participant/:id', async (request, response) => {
-  const searchParticipant = new SearchParticipantController()
-  await searchParticipant.handle(request, response)
-})
+participantController.get(
+  '/participant/:id',
+  userAuth,
+  async (request, response) => {
+    const searchParticipant = new SearchParticipantController()
+    await searchParticipant.handle(request, response)
+  },
+)
 
-participantController.post('/participant', async (request, response) => {
-  const createParticipant = new CreateParticipantController()
-  await createParticipant.handle(request, response)
-})
+participantController.post(
+  '/participant',
+  userAuth,
+  async (request, response) => {
+    const createParticipant = new CreateParticipantController()
+    await createParticipant.handle(request, response)
+  },
+)
 
 // participantController.post('/participant/:id', async (request, response) => {
 //   const updateParticipant = new UpdateParticipantController()

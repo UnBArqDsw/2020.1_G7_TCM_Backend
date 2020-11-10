@@ -20,6 +20,15 @@ class Participant {
   @Column()
   players: string
 
+  @Column()
+  tournament_points: number
+
+  @Column()
+  win_count: number
+
+  @Column()
+  loss_count: number
+
   @CreateDateColumn()
   created_at: Date
 
