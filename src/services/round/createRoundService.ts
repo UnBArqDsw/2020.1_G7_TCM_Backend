@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm'
 import { Result } from '../protocols/IServices'
 import Round from '../../models/round/round'
 import Matchs from '../../models/match/match'
+import CreateMatchService from '../match/createMatchService'
 
 export class CreateRoundService {
   public async execute(name: string, status: boolean): Promise<Result> {
@@ -11,14 +12,35 @@ export class CreateRoundService {
     const matchRepository = await getRepository(Matchs)
     let match = new Matchs()
 
-    match = await matchRepository.findOne(
-      '79014fc8-2dd5-491a-ba78-8cae12c5bef2',
-    )
+    let entrada = ['fb0c6ff6-1ed0-4fe0-9c50-63e864b32139','5cad7708-a70a-4735-ae25-4f9085505e78','880b5c3d-98fa-4acb-bd3c-adad06d55f66','608b815f-18e0-4a83-86c6-fad55578ab06']
+    let matchs_ids:string[] = []
+
+    function participantRandom(){
+      let aux = Math.floor(Math.random() * entrada.length);
+      const participant = entrada[aux]
+      entrada = entrada.filter(v => v !== participant);
+      return participant;
+    }
+    const createMatch = new CreateMatchService()
+
+    while(entrada.length != 0){
+      const particpant1 = participantRandom();
+      const particpant2 = participantRandom();
+      
+      console.log("entrada", entrada);
+      const match_result = await createMatch.execute('',particpant1,particpant2)
+      matchs_ids.push(String(match_result.match_id))
+    }
+    
+    // match = await matchRepository.findOne(
+    //   '79014fc8-2dd5-491a-ba78-8cae12c5bef2',
+    // )
+    let round = new Round()
     try {
-      let round = new Round()
+      
       round.name = name
       round.status = status
-      round.matchs_ids = [match.id,match.id]
+      round.matchs_ids = matchs_ids
       const round_aux = await roundRepository.save(round)
 
     } catch (error) {
@@ -30,3 +52,5 @@ export class CreateRoundService {
     return { body: { round }, statusCode: 200 }
   }
 }
+
+
