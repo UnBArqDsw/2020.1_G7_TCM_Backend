@@ -36,17 +36,16 @@
         }
       ],
       "no-useless-constructor": "off",
-      "camelcase": "off"
+      "camelcase": "off",
+      "prefer-const": ["error", {         
+        "destructuring": "any",       
+        "ignoreReadBeforeAssign": false
+        }
+      ]
     },
     "settings": {
       "import/resolver": {
         "typescript": {}
       }
-    },
-    "prefer-const": ["error", {         
-      "destructuring": "any",       
-      "ignoreReadBeforeAssign": false
-      }
-    ]
-
+    }
 }
