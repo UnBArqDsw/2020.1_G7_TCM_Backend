@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-await-in-loop */
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { getRepository } from 'typeorm'
