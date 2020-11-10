@@ -6,29 +6,27 @@ import Round from '../../models/round/round'
 import PlayoffMatchService from '../match/playoffMatch/playoffMatchService'
 
 export class ListMatchsInRoundService {
-  public async execute(round_id:string): Promise<Result> {
-    
+  public async execute(round_id: string): Promise<Result> {
     const roundRepository = getRepository(Round)
     const matchs_list = []
-    
-    let round = new Round();
+
+    let round = new Round()
 
     round = await roundRepository.findOne(round_id)
     const matchService = new PlayoffMatchService()
 
     try {
-
-        for(var match in round.matchs_ids){
-            var result = await matchService.getMatch(round.matchs_ids[match])
-            matchs_list.push(result)
-        }
-        
+      for (const match in round.matchs_ids) {
+        const result = await matchService.getMatch(round.matchs_ids[match])
+        matchs_list.push(result)
+      }
     } catch (error) {
-        return {body: {message: 'erro ao buscar partidas do round'},statusCode: 500}
+      return {
+        body: { message: 'erro ao buscar partidas do round' },
+        statusCode: 500,
+      }
     }
 
     return { body: { matchs_list }, statusCode: 200 }
   }
 }
-
-
