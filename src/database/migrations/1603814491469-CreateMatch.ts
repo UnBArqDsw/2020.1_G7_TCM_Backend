@@ -58,11 +58,6 @@ export class CreateMatch1603814491469 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'round_id',
-            type: 'uuid',
-            isNullable: true,
-          },
-          {
             name: 'score',
             type: 'varchar',
             isNullable: true,
