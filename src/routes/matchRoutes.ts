@@ -1,10 +1,15 @@
 import { Router } from 'express'
 import CreateFriendlyMatchController from '../controllers/match/createMatchController'
-import {PlayoffGetMatchController, PlayoffGetAddResultController, PlayoffAddStatusController} from '../controllers/match/playoffControllers'
-import {FliendlyAddResultController,
-   FliendlyAddStatusController,
-    FliendlyGetMatchController} from '../controllers/match/friendlyMatchController'
-
+import {
+  PlayoffGetMatchController,
+  PlayoffGetAddResultController,
+  PlayoffAddStatusController,
+} from '../controllers/match/playoffControllers'
+import {
+  FliendlyAddResultController,
+  FliendlyAddStatusController,
+  FliendlyGetMatchController,
+} from '../controllers/match/friendlyMatchController'
 
 const matchRoutes = Router()
 
@@ -23,12 +28,10 @@ matchRoutes.post('/friendly/add/match/result', async (request, response) => {
   await match.handle(request, response)
 })
 
-
 matchRoutes.post('/friendly/add/match/status', async (request, response) => {
   const match = new FliendlyAddStatusController()
   await match.handle(request, response)
 })
-
 
 // Playoff rotas
 matchRoutes.get('/playoff/:id', async (request, response) => {
@@ -41,13 +44,9 @@ matchRoutes.post('/playoff/add/match/result', async (request, response) => {
   await match.handle(request, response)
 })
 
-
 matchRoutes.post('/playoff/add/match/status', async (request, response) => {
   const match = new PlayoffAddStatusController()
   await match.handle(request, response)
 })
-
-
-
 
 export default matchRoutes
