@@ -24,8 +24,8 @@ export class CreateRound1603563386521 implements MigrationInterface {
           },
           {
             name: 'matchs_ids',
-            type: 'uuid',
-            isNullable: true,
+            type: 'varchar',
+            isArray: true,
           },
           {
             name: 'created_at',
