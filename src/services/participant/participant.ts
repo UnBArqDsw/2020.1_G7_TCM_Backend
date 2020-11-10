@@ -8,8 +8,7 @@ import Participant from '../../models/participant/participant'
 
 export class CreateParticipant implements Service {
   public async execute(request: Request): Promise<Result> {
-    // const manager: string = request.body.id
-    // console.log(request.body);
+
     const { status, players, participant_type } = request.body
 
     const requiredFields = ['status', 'players', 'participant_type']
@@ -30,7 +29,7 @@ export class CreateParticipant implements Service {
     try {
       await participantRepository.save(participant)
     } catch (error) {
-      console.log(error)
+      return { body: { message: "Erro ao criar partida" }, statusCode: 500 }
     }
 
     return { body: { participant }, statusCode: 200 }

@@ -4,11 +4,9 @@ import { Controller } from '../protocols/IController';
 
 export  class FliendlyGetMatchController implements Controller {
     async handle(request: Request, response: Response): Promise<Response> {
-      const {id} = request.param;
-      // console.log(id)
+      const {id} = request.params;
       const match = new FriendlyMatchService()
       const result = await match.getMatch(id);
-      // console.log(result)
       return response.status(Number(result.statusCode)).json(result)
     }
 }
