@@ -5,7 +5,6 @@ import { CreateRoundService } from '../../services/round/createRoundService'
 
 export class CreateRoundController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
-    // const user = new CreateUserFactory()
     const create = new CreateRoundService()
     const { name, status, participant_list } = request.body
     const { body, statusCode } = await create.execute(name, status, participant_list)
