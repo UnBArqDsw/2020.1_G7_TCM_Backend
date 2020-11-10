@@ -8,6 +8,7 @@ export class addcolumnroundandparticipants1605048139775
       new TableColumn({
         name: 'participants',
         type: 'varchar',
+        isArray: true,
       }),
     )
     await queryRunner.addColumn(
@@ -15,6 +16,7 @@ export class addcolumnroundandparticipants1605048139775
       new TableColumn({
         name: 'rounds_ids',
         type: 'varchar',
+        isArray: true,
       }),
     )
   }
