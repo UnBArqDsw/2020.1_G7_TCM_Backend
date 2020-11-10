@@ -1,9 +1,10 @@
 import { Router } from 'express'
 import CreateFriendlyMatchController from '../controllers/match/createMatchController'
 import {PlayoffGetMatchController, PlayoffGetAddResultController, PlayoffAddStatusController} from '../controllers/match/playoffControllers'
-import {FliendlyAddResultController, FliendlyAddStatusController, FliendlyGetMatchController} from '../controllers/match/friendlyMatchController'
+import {FliendlyAddResultController,
+   FliendlyAddStatusController,
+    FliendlyGetMatchController} from '../controllers/match/friendlyMatchController'
 
-import userAuth from '../middlewares/userAuth'
 
 const matchRoutes = Router()
 
