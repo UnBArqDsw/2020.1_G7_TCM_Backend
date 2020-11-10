@@ -12,9 +12,6 @@ export class CreateRoundService {
     const matchRepository = await getRepository(Matchs)
     let match = new Matchs()
 
-    console.log("##############")
-      console.log(participant_ids)
-
     let matchs_ids:string[] = []
 
     function participantRandom(){
@@ -25,7 +22,6 @@ export class CreateRoundService {
     }
     const createMatch = new CreateMatchService()
 
-    //verifica se o numero de participantes é impar
     if(participant_ids.length%2 !==0){
       const particpant1 = participantRandom();
       const match_result = await createMatch.execute('',particpant1,'')
@@ -37,7 +33,6 @@ export class CreateRoundService {
       const particpant1 = participantRandom();
       const particpant2 = participantRandom();
       
-      // console.log("participant_ids", participant_ids);
       const match_result = await createMatch.execute('',particpant1,particpant2)
       matchs_ids.push(String(match_result.match_id))
     }
@@ -51,10 +46,9 @@ export class CreateRoundService {
       const round_aux = await roundRepository.save(round)
 
     } catch (error) {
-      console.log(error)
-    }
+      return { body: { message: "Erro ao criar round" }, statusCode: 500 }
 
-    // match.round_id =
+    }
 
     return { body: { round }, statusCode: 200 }
   }

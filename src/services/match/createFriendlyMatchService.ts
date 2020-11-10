@@ -8,7 +8,6 @@ import { Result, Service } from '../protocols/IServices'
 class CreateFriendlyMatchService implements Service {
   public async execute(request: Request): Promise<Result> {
     const { user_id, opponent_id } = request.body;
-    // console.log(user_id,opponent_id)
 
     const matchRepository = getRepository(Matchs)
     const userRepository = getRepository(User)
@@ -28,7 +27,6 @@ class CreateFriendlyMatchService implements Service {
       match.player2_id = opponent
       match.status = 'C'
 
-      console.log(match)
         const create = await matchRepository.create(match)
         await matchRepository.save(create)
         delete match.player1_id.password

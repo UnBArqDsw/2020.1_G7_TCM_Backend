@@ -16,7 +16,6 @@ export class GetWinnersService {
     round = await roundRepository.findOne(round_id)
     const matchService = new PlayoffMatchService()
 
-    console.log(round)
     try {
 
         for(var match in round.matchs_ids){
