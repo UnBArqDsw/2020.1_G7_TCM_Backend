@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm'
 import Matchs from '../match/match'
 
@@ -20,8 +21,15 @@ class Round {
   @Column()
   name: string
 
-  // @OneToMany(() => Matchs, match => match.round_id)
-  // matchs_ids: Matchs[]
+  @Column('varchar', { array: true })
+  matchs_ids: string[]
+
+
+  // @OneToMany(() => Matchs, match => match.id)
+  // @JoinColumn({ name: 'matchs_ids' })
+  // matchs_id: string
+
+  
 
   @CreateDateColumn()
   created_at: Date
