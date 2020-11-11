@@ -30,7 +30,7 @@ class User {
   @Column()
   birthday: Date
 
-  @Column()
+  @Column({ nullable: true })
   photo: string
 
   @CreateDateColumn()
