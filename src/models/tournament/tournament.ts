@@ -59,10 +59,10 @@ class Tournaments {
   @Column()
   cidade: string
 
-  @Column('varchar', { array: true })
+  @Column('varchar', { array: true, nullable: true })
   participants: string[]
 
-  @Column('varchar', { array: true })
+  @Column('varchar', { array: true, nullable: true })
   rounds_ids: string[]
 
   @Column()

@@ -14,8 +14,6 @@ export class CreatePlayoffService implements Service {
       description,
       type,
       rules,
-      participants,
-      rounds_ids,
       players_quantity,
       start_date,
       end_date,
@@ -65,11 +63,13 @@ export class CreatePlayoffService implements Service {
       cidade,
       endereco,
       manager,
-      participants,
-      rounds_ids,
     })
 
-    await playoffRepository.save(playoff)
+    try {
+      await playoffRepository.save(playoff)
+    } catch (err) {
+      throw new AppError(err)
+    }
 
     return { body: { playoff }, statusCode: 200 }
   }
