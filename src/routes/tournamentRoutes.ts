@@ -17,7 +17,7 @@ tournamentRoutes.post('/tournament', userAuth, async (request, response) => {
 })
 
 tournamentRoutes.post(
-  '/solicitation/:tournamentId',
+  '/solicitation/:tournament',
   userAuth,
   async (request, response) => {
     const createSolicitation = new CreateSolitiationController()
