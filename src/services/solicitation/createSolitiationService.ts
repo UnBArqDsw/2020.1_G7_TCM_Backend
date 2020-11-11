@@ -2,41 +2,29 @@
 import { Request } from 'express'
 import { getRepository } from 'typeorm'
 import AppError from '../../errors/appError'
-import Tournaments from '../../models/tournament/tournament'
-import User from '../../models/user/user'
+import Solicitations from '../../models/solicitations/solitications'
 import { Result, Service } from '../protocols/IServices'
 
 class CreateSolicitationService implements Service {
   public async execute(request: Request): Promise<Result> {
-    const playoffRepository = getRepository(Tournaments)
+    const solicittionRepository = getRepository(Solicitations)
 
-    const { tournamentId } = request.params
     const { id } = request.user
+    const { tournament } = request.params
 
-    const checkTournamentExists = await playoffRepository.findOne({
-      where: {
-        id: tournamentId,
-      },
+    const solicitation = await solicittionRepository.create({
+      user: id,
+      tournament,
     })
 
-    console.log(checkTournamentExists)
-
-    if (!checkTournamentExists) {
-      throw new AppError('Torneio inexistente')
-    }
-
     try {
-      const createSolicitation = playoffRepository.update(tournamentId, {
-        solicitation: id,
-      })
-    } catch (error) {
-      console.log(error)
+      await solicittionRepository.save(solicitation)
+    } catch (err) {
+      throw new AppError(err)
     }
-
     return {
       body: {
-        id,
-        tournamentId,
+        solicitation,
       },
       statusCode: 200,
     }
