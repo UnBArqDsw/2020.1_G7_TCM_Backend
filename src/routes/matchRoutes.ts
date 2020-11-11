@@ -1,17 +1,13 @@
 import { Router } from 'express'
 import CreateFriendlyMatchController from '../controllers/match/createMatchController'
-import {
-  PlayoffGetMatchController,
-  PlayoffGetAddResultController,
-  PlayoffAddStatusController,
-} from '../controllers/match/playoffControllers'
-import {
-  FliendlyAddResultController,
-  FliendlyAddStatusController,
-  FliendlyGetMatchController,
-} from '../controllers/match/friendlyMatchController'
+import { PlayoffAddStatusController } from '../controllers/match/playoffControllers'
+import { FriendlyAddStatusController } from '../controllers/friendlymatch/friendlyMatchController'
+import { PlayoffGetMatchController } from '../controllers/match/searchPlayoffMatch'
+import { PlayoffGetAddResultController } from '../controllers/match/addResultMatch'
+import { FriendlyGetMatchController } from '../controllers/friendlymatch/searchFriendlyMatch'
+import { FriendlyAddResultController } from '../controllers/friendlymatch/addResultMatch'
 
-import userAuth from '../middlewares/userAuth'
+// import userAuth from '../middlewares/userAuth'
 
 const matchRoutes = Router()
 
@@ -21,17 +17,17 @@ matchRoutes.post('/friendly', async (request, response) => {
 })
 
 matchRoutes.get('/friendly/:id', async (request, response) => {
-  const match = new FliendlyGetMatchController()
+  const match = new FriendlyGetMatchController()
   await match.handle(request, response)
 })
 
 matchRoutes.post('/friendly/add/match/result', async (request, response) => {
-  const match = new FliendlyAddResultController()
+  const match = new FriendlyAddResultController()
   await match.handle(request, response)
 })
 
 matchRoutes.post('/friendly/add/match/status', async (request, response) => {
-  const match = new FliendlyAddStatusController()
+  const match = new FriendlyAddStatusController()
   await match.handle(request, response)
 })
 

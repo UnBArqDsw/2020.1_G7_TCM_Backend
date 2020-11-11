@@ -7,13 +7,10 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
-  RelationId,
-  ManyToOne,
 } from 'typeorm'
 
 import User from '../user/user'
 import Participants from '../participant/participant'
-import Round from '../round/round'
 
 @Entity('matchs')
 class Matchs {

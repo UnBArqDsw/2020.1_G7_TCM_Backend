@@ -5,7 +5,8 @@ import userAuth from '../middlewares/userAuth'
 const roundRoutes = Router()
 
 roundRoutes.get(
-  '/round/:id', userAuth,
+  '/round/:id',
+  userAuth,
   async (request: Request, response: Response) => {
     const list = new ListMatchsRoundController()
     await list.handle(request, response)

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import CreateFriendlyMatchService from '../../services/match/createFriendlyMatchService'
-import CreateMatchService from '../../services/match/createMatchService'
 
 import { Controller } from '../protocols/IController'
 
@@ -11,4 +10,3 @@ export default class CreateFriendlyMatchController implements Controller {
     return response.status(statusCode).json(body)
   }
 }
-

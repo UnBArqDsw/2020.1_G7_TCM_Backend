@@ -59,6 +59,12 @@ class Tournaments {
   @Column()
   cidade: string
 
+  @Column('varchar', { array: true })
+  participants: string[]
+
+  @Column('varchar', { array: true })
+  rounds_ids: string[]
+
   @Column()
   endereco: string
 

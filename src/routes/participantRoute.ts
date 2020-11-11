@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import CreateParticipantController from '../controllers/participant/createParticipantController'
 import SearchParticipantController from '../controllers/participant/searchParticipantController'
-// import UpdateParticipantController from '../controllers/participant/updateParticipantController'
 import userAuth from '../middlewares/userAuth'
 
 const participantController = Router()

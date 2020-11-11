@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import { Response, Request } from 'express'
 import { Controller } from '../protocols/IController'
-import {ListMatchsInRoundService} from '../../services/round/listMatchsRoundService'
+import { ListMatchsInRoundService } from '../../services/round/listMatchsRoundService'
 
 export class ListMatchsRoundController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {

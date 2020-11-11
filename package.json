@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/app.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "eslint": "npx eslint --ext .ts  src/",
+    "eslint:fix": "npx eslint --fix src/"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

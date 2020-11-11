@@ -5,10 +5,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-  JoinColumn,
 } from 'typeorm'
-import Matchs from '../match/match'
 
 @Entity('rounds')
 class Round {
@@ -23,13 +20,6 @@ class Round {
 
   @Column('varchar', { array: true })
   matchs_ids: string[]
-
-
-  // @OneToMany(() => Matchs, match => match.id)
-  // @JoinColumn({ name: 'matchs_ids' })
-  // matchs_id: string
-
-  
 
   @CreateDateColumn()
   created_at: Date
