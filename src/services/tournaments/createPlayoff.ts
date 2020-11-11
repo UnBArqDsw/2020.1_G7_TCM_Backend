@@ -64,9 +64,11 @@ export class CreatePlayoffService implements Service {
       endereco,
       manager,
     })
-
-    await playoffRepository.save(playoff)
-
+    try {
+      await playoffRepository.save(playoff)
+    } catch (err) {
+      throw new AppError(err)
+    }
     return { body: { playoff }, statusCode: 200 }
   }
 }
