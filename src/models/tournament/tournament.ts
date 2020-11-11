@@ -11,6 +11,7 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm'
+import Participant from '../participant/participant'
 import Solicitations from '../solicitations/solitications'
 
 import User from '../user/user'
@@ -41,8 +42,15 @@ class Tournaments {
   @Column()
   end_date: Date
 
-  @OneToMany(() => Solicitations, solicitation => solicitation.tournaments)
+  @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
+    nullable: true,
+  })
   solicitations: Solicitations[]
+
+  @OneToMany(() => Participant, participant => participant.tournaments, {
+    nullable: true,
+  })
+  participants: Participant[]
 
   @ManyToOne(() => User, user => user.id)
   manager: User
@@ -58,9 +66,6 @@ class Tournaments {
 
   @Column()
   cidade: string
-
-  @Column('varchar', { array: true, nullable: true })
-  participants: string[]
 
   @Column('varchar', { array: true, nullable: true })
   rounds_ids: string[]
