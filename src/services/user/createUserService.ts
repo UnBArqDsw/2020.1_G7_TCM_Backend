@@ -66,8 +66,11 @@ class CreateUserService implements Service {
       nickname,
     })
 
-    await userRepository.save(user)
-
+    try {
+      await userRepository.save(user)
+    } catch (err) {
+      throw new AppError(err, 500)
+    }
     return {
       body: {
         id: user.id,
