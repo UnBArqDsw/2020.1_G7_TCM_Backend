@@ -12,11 +12,3 @@ export default class CreateFriendlyMatchController implements Controller {
   }
 }
 
-// export default class CreateFriendlyMatchController implements Controller {
-//   async handle(request: Request, response: Response): Promise<Response> {
-//     const {tournament_id,participant1_id, participant2_id} =request.body;
-//     const create = new CreateMatchService()
-//     const result = await create.execute(tournament_id,participant1_id, participant2_id)
-//     return response.status(200).json(result)
-//   }
-// }

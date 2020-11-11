@@ -42,5 +42,11 @@
       "import/resolver": {
         "typescript": {}
       }
-    }
+    },
+    "prefer-const": ["error", {         
+      "destructuring": "any",       
+      "ignoreReadBeforeAssign": false
+      }
+    ]
+
 }

@@ -14,7 +14,6 @@ class SearchParticipantByIdService implements Service {
     } catch {
       throw new AppError('Participant id not found.', 400)
     }
-    // const { players, status } = participant
     return {
       body: { participant },
       statusCode: 200,

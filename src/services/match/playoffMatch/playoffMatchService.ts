@@ -13,7 +13,6 @@ class PlayoffMatchService extends ServiceMatch{
 
             const match = await this.matchRepository.findOne(id,{ relations: ['participant1_id','participant2_id','participant_winner_id']})
             if(typeof(match)!= 'undefined'){
-                console.log("------------------match=-----------")
 
                 const participant1 = {id: match.participant1_id.id, name: match.participant2_id.players}
                 const participant2 = { id: match.participant2_id.id, name: match.participant2_id.players}

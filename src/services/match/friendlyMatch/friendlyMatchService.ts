@@ -12,7 +12,6 @@ class FriendlyMatchService extends ServiceMatch{
 
             const match = await this.matchRepository.findOne(id,{ relations: ['player1_id','player2_id','user_winner_id']})
             if(typeof(match)!= 'undefined'){
-                // console.log("------------------match=-----------")
 
                 const player1 = { id: match.player1_id.id, name: match.player1_id.name }
                 const player2 = { id: match.player2_id.id, name: match.player2_id.name }
