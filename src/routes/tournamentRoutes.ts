@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { AcceptSolitiationController } from '../controllers/solicitation/acceptSolicitation'
 import { CreateSolitiationController } from '../controllers/solicitation/createSolicititation'
 import { SearchSolitiationController } from '../controllers/solicitation/searchSolicititation'
 import { CreateTournamentController } from '../controllers/tournament/createTournamentController'
@@ -32,6 +33,15 @@ tournamentRoutes.get(
   async (request, response) => {
     const searchSolicitation = new SearchSolitiationController()
     await searchSolicitation.handle(request, response)
+  },
+)
+
+tournamentRoutes.post(
+  '/accept/:tournament',
+  userAuth,
+  async (request, response) => {
+    const acceptSolicitation = new AcceptSolitiationController()
+    await acceptSolicitation.handle(request, response)
   },
 )
 
