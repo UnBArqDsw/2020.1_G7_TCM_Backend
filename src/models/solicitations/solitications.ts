@@ -24,10 +24,13 @@ class Solicitations {
   @JoinColumn({ name: 'user' })
   user_id: User
 
-  @ManyToOne(type => Tournaments, solicitations => Solicitations, {
-    eager: true,
-  })
-  tournament: Tournaments
+  @ManyToOne(() => Tournaments, tournament => tournament.solicitations)
+  tournaments: Tournaments
+
+  // @ManyToOne(type => Tournaments, solicitations => Solicitations, {
+  //   eager: true,
+  // })
+  // tournament: Tournaments
 }
 
 export default Solicitations

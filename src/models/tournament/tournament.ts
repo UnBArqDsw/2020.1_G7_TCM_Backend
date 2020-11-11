@@ -9,6 +9,7 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm'
 import Solicitations from '../solicitations/solitications'
 
@@ -18,13 +19,6 @@ import User from '../user/user'
 class Tournaments {
   @PrimaryGeneratedColumn('uuid')
   id: string
-
-  @Column()
-  manager: string
-
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'manager' })
-  manager_id: User
 
   @Column()
   name: string
@@ -47,11 +41,17 @@ class Tournaments {
   @Column()
   end_date: Date
 
-  @OneToMany(type => Solicitations, tournament => Tournaments, {
-    nullable: true,
-    eager: true,
-  })
+  @OneToMany(() => Solicitations, solicitation => solicitation.tournaments)
   solicitations: Solicitations[]
+
+  @ManyToOne(() => User, user => user.id)
+  manager: User
+
+  // @OneToMany(type => Solicitations, tournament => Tournaments, {
+  //   nullable: true,
+  //   eager: true,
+  // })
+  // solicitations: Solicitations[]
 
   @Column()
   estado: string
