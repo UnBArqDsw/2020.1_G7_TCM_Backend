@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable camelcase */
 import {
   Entity,
@@ -9,6 +10,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm'
+import Solicitations from '../solicitations/solitications'
 
 import User from '../user/user'
 
@@ -45,12 +47,11 @@ class Tournaments {
   @Column()
   end_date: Date
 
-  @Column('varchar', { array: true })
-  solicitation: User[]
-
-  @OneToMany(() => User, user => user.id)
-  @JoinColumn({ name: 'soliciation' })
-  solicitation_id: string
+  @OneToMany(type => Solicitations, tournament => Tournaments, {
+    nullable: true,
+    eager: true,
+  })
+  solicitations: Solicitations[]
 
   @Column()
   estado: string
