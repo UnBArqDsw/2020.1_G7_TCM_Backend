@@ -1,20 +1,28 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
 export class AddSolicitation1604962398454 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createForeignKey(
-      'tournaments',
-      new TableForeignKey({
-        name: 'solicitation_id',
-        referencedColumnNames: ['id'],
-        columnNames: ['solicitation'],
-        referencedTableName: 'users',
-        onDelete: 'SET NULL',
+    await queryRunner.createTable(
+      new Table({
+        name: 'solicitations',
+        columns: [
+          {
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
+          },
+          {
+            name: 'user',
+            type: 'uuid',
+          },
+        ],
       }),
     )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tournaments', 'solicitation_id')
+    await queryRunner.dropTable('solicitations')
   }
 }
