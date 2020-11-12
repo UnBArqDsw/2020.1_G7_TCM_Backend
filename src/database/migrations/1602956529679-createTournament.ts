@@ -69,11 +69,6 @@ export class createTournament1602956529679 implements MigrationInterface {
             type: 'uuid',
             isNullable: true,
           },
-          {
-            name: 'solicitation',
-            type: 'uuid',
-            isNullable: true,
-          },
         ],
       }),
     )

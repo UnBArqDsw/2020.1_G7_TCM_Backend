@@ -1,5 +1,7 @@
 import { Router } from 'express'
+import { AcceptSolitiationController } from '../controllers/solicitation/acceptSolicitation'
 import { CreateSolitiationController } from '../controllers/solicitation/createSolicititation'
+import { SearchSolitiationController } from '../controllers/solicitation/searchSolicititation'
 import { CreateTournamentController } from '../controllers/tournament/createTournamentController'
 import { SearchTournamentController } from '../controllers/tournament/searchTournamentController'
 import userAuth from '../middlewares/userAuth'
@@ -17,11 +19,29 @@ tournamentRoutes.post('/tournament', userAuth, async (request, response) => {
 })
 
 tournamentRoutes.post(
-  '/solicitation/:tournamentId',
+  '/solicitation/:tournament',
   userAuth,
   async (request, response) => {
     const createSolicitation = new CreateSolitiationController()
     await createSolicitation.handle(request, response)
+  },
+)
+
+tournamentRoutes.get(
+  '/solicitation/:tournament',
+  userAuth,
+  async (request, response) => {
+    const searchSolicitation = new SearchSolitiationController()
+    await searchSolicitation.handle(request, response)
+  },
+)
+
+tournamentRoutes.post(
+  '/accept/:tournament',
+  userAuth,
+  async (request, response) => {
+    const acceptSolicitation = new AcceptSolitiationController()
+    await acceptSolicitation.handle(request, response)
   },
 )
 

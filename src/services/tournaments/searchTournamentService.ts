@@ -17,7 +17,7 @@ export class SearchTournamentsService implements Service {
     })
 
     if (tournament.length === 0) {
-      throw new AppError('No Tournaments')
+      throw new AppError('Not found Tournaments ')
     }
 
     return { body: { tournament }, statusCode: 200 }

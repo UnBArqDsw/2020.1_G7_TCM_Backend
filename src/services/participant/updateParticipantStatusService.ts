@@ -1,5 +1,6 @@
 import { Request } from 'express'
 import { getRepository } from 'typeorm'
+import AppError from '../../errors/appError'
 import Participant from '../../models/participant/participant'
 import { Result, Service } from '../protocols/IServices'
 
@@ -15,10 +16,13 @@ class updateParticipantStatusService implements Service {
     try {
       await participantRepository.save(current_status)
     } catch (error) {
-      console.log(error)
+      throw new AppError(error)
     }
 
     return {
+      body: {
+        current_status,
+      },
       statusCode: 200,
     }
   }

@@ -5,12 +5,17 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm'
+import Tournaments from '../tournament/tournament'
 
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
   id: string
+
+  @OneToMany(() => Tournaments, tournaments => tournaments.manager)
+  tournaments: Tournaments[]
 
   @Column()
   name: string
@@ -30,7 +35,7 @@ class User {
   @Column()
   birthday: Date
 
-  @Column()
+  @Column({ nullable: true })
   photo: string
 
   @CreateDateColumn()
