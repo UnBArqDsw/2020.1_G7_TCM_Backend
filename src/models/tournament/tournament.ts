@@ -15,6 +15,7 @@ import Participant from '../participant/participant'
 import Solicitations from '../solicitations/solitications'
 
 import User from '../user/user'
+import Round from '../round/round'
 
 @Entity('tournaments')
 class Tournaments {
@@ -51,6 +52,11 @@ class Tournaments {
     nullable: true,
   })
   participants: Participant[]
+
+  @OneToMany(() => Round, round => round.tournaments, {
+    nullable: true,
+  })
+  rounds: Round[]
 
   @ManyToOne(() => User, user => user.id)
   manager: User

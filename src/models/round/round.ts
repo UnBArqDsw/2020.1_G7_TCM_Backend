@@ -5,7 +5,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm'
+import Tournaments from '../tournament/tournament'
 
 @Entity('rounds')
 class Round {
@@ -20,6 +22,9 @@ class Round {
 
   @Column('varchar', { array: true })
   matchs_ids: string[]
+
+  @ManyToOne(() => Tournaments, tournament => tournament.rounds)
+  tournaments: Tournaments
 
   @CreateDateColumn()
   created_at: Date
