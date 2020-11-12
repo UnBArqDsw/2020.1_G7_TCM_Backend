@@ -17,10 +17,10 @@ class Matchs {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
+  @Column({ nullable: true })
   status: string
 
-  @Column()
+  @Column({ nullable: true })
   local: string
 
   @OneToOne(() => User)
@@ -51,7 +51,7 @@ class Matchs {
   @JoinColumn({ name: 'participant2_id' })
   participant2_id: Participants
 
-  @Column()
+  @Column({ nullable: true })
   score: string
 
   @CreateDateColumn()
