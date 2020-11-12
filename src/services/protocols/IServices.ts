@@ -6,7 +6,6 @@ export interface Result {
   statusCode: number
 }
 
-
 export interface Service {
   execute(request: Request): Promise<Result>
 }

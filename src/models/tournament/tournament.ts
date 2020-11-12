@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable camelcase */
 import {
   Entity,
@@ -7,7 +8,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
+  ManyToOne,
 } from 'typeorm'
+import Participant from '../participant/participant'
+import Solicitations from '../solicitations/solitications'
 
 import User from '../user/user'
 
@@ -15,13 +20,6 @@ import User from '../user/user'
 class Tournaments {
   @PrimaryGeneratedColumn('uuid')
   id: string
-
-  @Column()
-  manager: string
-
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'manager' })
-  manager_id: User
 
   @Column()
   name: string
@@ -44,14 +42,33 @@ class Tournaments {
   @Column()
   end_date: Date
 
-  @Column('varchar', { array: true })
-  solicitation: string[]
+  @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
+    nullable: true,
+  })
+  solicitations: Solicitations[]
+
+  @OneToMany(() => Participant, participant => participant.tournaments, {
+    nullable: true,
+  })
+  participants: Participant[]
+
+  @ManyToOne(() => User, user => user.id)
+  manager: User
+
+  // @OneToMany(type => Solicitations, tournament => Tournaments, {
+  //   nullable: true,
+  //   eager: true,
+  // })
+  // solicitations: Solicitations[]
 
   @Column()
   estado: string
 
   @Column()
   cidade: string
+
+  @Column('varchar', { array: true, nullable: true })
+  rounds_ids: string[]
 
   @Column()
   endereco: string
