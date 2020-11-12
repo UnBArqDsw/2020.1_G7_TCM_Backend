@@ -61,20 +61,11 @@ class Tournaments {
   @ManyToOne(() => User, user => user.id)
   manager: User
 
-  // @OneToMany(type => Solicitations, tournament => Tournaments, {
-  //   nullable: true,
-  //   eager: true,
-  // })
-  // solicitations: Solicitations[]
-
   @Column()
   estado: string
 
   @Column()
   cidade: string
-
-  @Column('varchar', { array: true, nullable: true })
-  rounds_ids: string[]
 
   @Column()
   endereco: string
