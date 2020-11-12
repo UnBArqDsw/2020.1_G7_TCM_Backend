@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-export class generationrelations1605188539132 implements MigrationInterface {
-  name = 'generationrelations1605188539132'
+export class genetationrelacions1605223157744 implements MigrationInterface {
+  name = 'genetationrelacions1605223157744'
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`ALTER TABLE "tournaments" DROP COLUMN "manager"`)
@@ -75,6 +75,9 @@ export class generationrelations1605188539132 implements MigrationInterface {
       `ALTER TABLE "tournaments" ADD "end_date" TIMESTAMP NOT NULL`,
     )
     await queryRunner.query(
+      `ALTER TABLE "tournaments" ALTER COLUMN "status" DROP DEFAULT`,
+    )
+    await queryRunner.query(
       `ALTER TABLE "users" DROP CONSTRAINT "UQ_ad02a1be8707004cb805a4b5023"`,
     )
     await queryRunner.query(
@@ -86,13 +89,7 @@ export class generationrelations1605188539132 implements MigrationInterface {
     )
     await queryRunner.query(`ALTER TABLE "matchs" DROP COLUMN "status"`)
     await queryRunner.query(
-      `ALTER TABLE "matchs" ADD "status" character varying NOT NULL`,
-    )
-    await queryRunner.query(
-      `ALTER TABLE "matchs" ALTER COLUMN "local" SET NOT NULL`,
-    )
-    await queryRunner.query(
-      `ALTER TABLE "matchs" ALTER COLUMN "score" SET NOT NULL`,
+      `ALTER TABLE "matchs" ADD "status" character varying`,
     )
     await queryRunner.query(
       `ALTER TABLE "matchs" ADD CONSTRAINT "UQ_9438fe26af810b9a0aa00c39475" UNIQUE ("user_winner_id")`,
@@ -199,12 +196,6 @@ export class generationrelations1605188539132 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "matchs" DROP CONSTRAINT "UQ_9438fe26af810b9a0aa00c39475"`,
     )
-    await queryRunner.query(
-      `ALTER TABLE "matchs" ALTER COLUMN "score" DROP NOT NULL`,
-    )
-    await queryRunner.query(
-      `ALTER TABLE "matchs" ALTER COLUMN "local" DROP NOT NULL`,
-    )
     await queryRunner.query(`ALTER TABLE "matchs" DROP COLUMN "status"`)
     await queryRunner.query(
       `ALTER TABLE "matchs" ADD "status" character NOT NULL`,
@@ -216,6 +207,9 @@ export class generationrelations1605188539132 implements MigrationInterface {
     )
     await queryRunner.query(
       `ALTER TABLE "users" ADD CONSTRAINT "UQ_ad02a1be8707004cb805a4b5023" UNIQUE ("nickname")`,
+    )
+    await queryRunner.query(
+      `ALTER TABLE "tournaments" ALTER COLUMN "status" SET DEFAULT false`,
     )
     await queryRunner.query(`ALTER TABLE "tournaments" DROP COLUMN "end_date"`)
     await queryRunner.query(

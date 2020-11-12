@@ -43,6 +43,9 @@ class Tournaments {
   @Column()
   end_date: Date
 
+  @Column()
+  status: boolean
+
   @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
     nullable: true,
   })
