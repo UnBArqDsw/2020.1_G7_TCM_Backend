@@ -1,8 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-export class conectionroundandtournament1605154623823
-  implements MigrationInterface {
-  name = 'conectionroundandtournament1605154623823'
+export class generationrelations1605188539132 implements MigrationInterface {
+  name = 'generationrelations1605188539132'
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`ALTER TABLE "tournaments" DROP COLUMN "manager"`)
@@ -13,9 +12,6 @@ export class conectionroundandtournament1605154623823
       `ALTER TABLE "solicitations" ADD "tournamentsId" uuid`,
     )
     await queryRunner.query(`ALTER TABLE "rounds" ADD "tournamentsId" uuid`)
-    await queryRunner.query(
-      `ALTER TABLE "tournaments" ADD "rounds_ids" character varying array`,
-    )
     await queryRunner.query(`ALTER TABLE "tournaments" ADD "managerId" uuid`)
     await queryRunner.query(
       `ALTER TABLE "participants" ALTER COLUMN "status" DROP DEFAULT`,
@@ -283,9 +279,6 @@ export class conectionroundandtournament1605154623823
       `ALTER TABLE "participants" ALTER COLUMN "status" SET DEFAULT false`,
     )
     await queryRunner.query(`ALTER TABLE "tournaments" DROP COLUMN "managerId"`)
-    await queryRunner.query(
-      `ALTER TABLE "tournaments" DROP COLUMN "rounds_ids"`,
-    )
     await queryRunner.query(`ALTER TABLE "rounds" DROP COLUMN "tournamentsId"`)
     await queryRunner.query(
       `ALTER TABLE "solicitations" DROP COLUMN "tournamentsId"`,
