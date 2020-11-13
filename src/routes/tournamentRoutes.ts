@@ -29,7 +29,7 @@ tournamentRoutes.post(
 )
 
 tournamentRoutes.post(
-  '/generationround/:tournament',
+  '/generationround/:id',
   userAuth,
   async (request, response) => {
     const generateRound = new GenerationRoundController()

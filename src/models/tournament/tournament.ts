@@ -53,6 +53,7 @@ class Tournaments {
 
   @OneToMany(() => Participant, participant => participant.tournaments, {
     nullable: true,
+    eager: true,
   })
   participants: Participant[]
 
