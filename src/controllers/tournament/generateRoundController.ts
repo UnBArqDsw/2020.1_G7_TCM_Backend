@@ -5,9 +5,8 @@ import { GenerationRound } from '../../services/tournaments/generateRound'
 
 export class GenerationRoundController implements Controller {
   async handle(request: Request, response: Response): Promise<Response> {
-    const create = new GenerationRound()
-    const { tournaments } = request.params
-    const { body, statusCode } = await create.execute(tournaments)
+    const tournaments = new GenerationRound()
+    const { body, statusCode } = await tournaments.execute(request)
     return response.status(statusCode).json(body)
   }
 }

@@ -43,7 +43,7 @@ class Tournaments {
   @Column()
   end_date: Date
 
-  @Column()
+  @Column({ default: false })
   status: boolean
 
   @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
