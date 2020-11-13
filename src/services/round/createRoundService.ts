@@ -14,8 +14,6 @@ export class CreateRoundService {
     participant_ids: string[],
   ): Promise<Result> {
     const roundRepository = getRepository(Round)
-    // const matchRepository = await getRepository(Matchs)
-    // const match = new Matchs()
 
     const matchs_ids: string[] = []
 

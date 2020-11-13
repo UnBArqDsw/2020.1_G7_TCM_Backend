@@ -51,7 +51,6 @@ class PlayoffMatchService extends ServiceMatch {
     const participant = await participantRepository.findOne(winner_id)
 
     if (typeof match !== 'undefined' && typeof participant !== 'undefined') {
-      // const participant = new participant();
       match.score = score
       match.participant_winner_id = participant
       match.status = 'F'

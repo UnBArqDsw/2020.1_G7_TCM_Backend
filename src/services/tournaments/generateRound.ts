@@ -19,17 +19,8 @@ export class GenerationRound implements Service {
 
     const player_id = []
     for (const player in players) {
-      // console.log()
       player_id.push(players[player].id)
     }
-    // console.log(player_id)
-    // console.log(ids)
-    // console.log(players)
-    // const players = [
-    //   '642b013f-da49-4d36-b0a2-c9dfb554595a',
-    //   '96e7a0a4-16e4-4cdd-8695-abccf8b026aa',
-    // ]
-    // const num_players = players.length
     const createRound = new CreateRoundService()
 
     const round = await createRound.execute(name, true, player_id)
