@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
-// import { getRepository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { Result } from '../protocols/IServices'
 import Round from '../../models/round/round'
 import CreateMatchService from '../match/createMatchService'
@@ -13,7 +13,7 @@ export class CreateRoundService {
     status: boolean,
     participant_ids: string[],
   ): Promise<Result> {
-    // const roundRepository = getRepository(Round)
+    const roundRepository = getRepository(Round)
     // const matchRepository = await getRepository(Matchs)
     // const match = new Matchs()
 
@@ -36,7 +36,6 @@ export class CreateRoundService {
     while (participant_ids.length !== 0) {
       const particpant1 = participantRandom()
       const particpant2 = participantRandom()
-
       const match_result = await createMatch.execute(
         '',
         particpant1,
@@ -44,13 +43,12 @@ export class CreateRoundService {
       )
       matchs_ids.push(String(match_result.match_id))
     }
-
     const round = new Round()
     try {
       round.name = name
       round.status = status
       round.matchs_ids = matchs_ids
-      // const round_aux = await roundRepository.save(round)
+      await roundRepository.save(round)
     } catch (error) {
       return { body: { message: 'Erro ao criar round' }, statusCode: 500 }
     }

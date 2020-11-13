@@ -16,7 +16,6 @@ class CreateMatchService {
 
     const player1_aux = await participantRepository.findOne(id_palyer_1)
     const player2_aux = await participantRepository.findOne(id_palyer_2)
-
     if (
       typeof player1_aux !== 'undefined' &&
       typeof player2_aux !== 'undefined'
@@ -35,7 +34,7 @@ class CreateMatchService {
       const matchRepository = getRepository(Matchs)
 
       try {
-        const match = matchRepository.create(match_aux)
+        const match = await matchRepository.create(match_aux)
         await matchRepository.save(match)
         return {
           match_id: match.id,
