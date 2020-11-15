@@ -7,6 +7,7 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  Unique,
 } from 'typeorm'
 import Tournaments from '../tournament/tournament'
 
@@ -17,12 +18,8 @@ class Solicitations {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
-  user: string
-
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'user' })
-  user_id: User
+  @ManyToOne(() => User, user => user.id)
+  requester: User
 
   @ManyToOne(() => Tournaments, tournament => tournament.solicitations)
   tournaments: Tournaments
