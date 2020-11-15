@@ -24,6 +24,16 @@ export class GenerationRound implements Service {
     const createRound = new CreateRoundService()
 
     const round = await createRound.execute(name, true, player_id)
+    const round_list = tournament.rounds
+
+    round_list.push(round)
+    tournament.rounds = round_list
+
+    console.log('gerou o round', round)
+
+    await tournamentRepository.save(tournament)
+    console.log('Atualizou o torneio', tournament)
+
     return { body: { round, players }, statusCode: 200 }
   }
 }

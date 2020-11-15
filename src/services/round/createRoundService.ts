@@ -12,7 +12,7 @@ export class CreateRoundService {
     name: string,
     status: boolean,
     participant_ids: string[],
-  ): Promise<Result> {
+  ): Promise<Round> {
     const roundRepository = getRepository(Round)
 
     const matchs_ids: string[] = []
@@ -48,9 +48,9 @@ export class CreateRoundService {
       round.matchs_ids = matchs_ids
       await roundRepository.save(round)
     } catch (error) {
-      return { body: { message: 'Erro ao criar round' }, statusCode: 500 }
+      console.log('error')
     }
 
-    return { body: { round }, statusCode: 200 }
+    return round
   }
 }
