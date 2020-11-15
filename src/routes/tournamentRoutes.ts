@@ -6,6 +6,7 @@ import { CreateTournamentController } from '../controllers/tournament/createTour
 import { SearchTournamentController } from '../controllers/tournament/searchTournamentController'
 import userAuth from '../middlewares/userAuth'
 import { GenerationRoundController } from '../controllers/tournament/generateRoundController'
+import { GenerationNextRoundController } from '../controllers/tournament/generateNextRoundController'
 
 const tournamentRoutes = Router()
 
@@ -33,6 +34,15 @@ tournamentRoutes.post(
   userAuth,
   async (request, response) => {
     const generateRound = new GenerationRoundController()
+    await generateRound.handle(request, response)
+  },
+)
+
+tournamentRoutes.post(
+  '/generationnextround/:id',
+  userAuth,
+  async (request, response) => {
+    const generateRound = new GenerationNextRoundController()
     await generateRound.handle(request, response)
   },
 )
