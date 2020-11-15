@@ -38,7 +38,7 @@ class CreateSolicitationService implements Service {
     }
 
     const solicitationExists = await solicittionRepository.findOne({
-      where: { user: id, tournaments: tournament },
+      where: { requester: id, tournaments: tournament },
     })
 
     if (solicitationExists) {
@@ -46,7 +46,7 @@ class CreateSolicitationService implements Service {
     }
 
     const solicitation = await solicittionRepository.create({
-      user: id,
+      requester: id,
       tournaments: tournament,
     })
 
