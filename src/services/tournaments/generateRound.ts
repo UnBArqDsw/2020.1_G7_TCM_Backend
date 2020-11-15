@@ -29,10 +29,7 @@ export class GenerationRound implements Service {
     round_list.push(round)
     tournament.rounds = round_list
 
-    console.log('gerou o round', round)
-
     await tournamentRepository.save(tournament)
-    console.log('Atualizou o torneio', tournament)
 
     return { body: { round, players }, statusCode: 200 }
   }
