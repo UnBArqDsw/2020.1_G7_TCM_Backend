@@ -16,6 +16,7 @@ export class GenerationNextRound implements Service {
     const tournament = await tournamentRepository.findOne({
       where: id,
     })
+    const round_list = []
     if (tournament.status === true) {
       const round_list = tournament.rounds
       let tamanho = 0
@@ -26,7 +27,7 @@ export class GenerationNextRound implements Service {
         const ultimo_round = round_list[tamanho - 1]
         const getWinners = new GetWinnersService()
         const winners = await getWinners.execute(ultimo_round.id)
-        console.log(winners)
+
         if (winners.body.length === 0) {
           return {
             body: { message: 'Ainda existe partidas sem ganhadores' },
@@ -42,6 +43,12 @@ export class GenerationNextRound implements Service {
           }
         }
         const createRound = new CreateRoundService()
+        const round_list = tournament.rounds
+
+        round_list.push(round)
+        tournament.rounds = round_list
+        await tournamentRepository.save(tournament)
+
         const round = await createRound.execute(name, true, winners.body)
         return { body: round, statusCode: 200 }
       }
