@@ -12,7 +12,7 @@ export class FeedAllTournamentsService implements Service {
 
     const playoffRepository = getRepository(Tournaments)
 
-    const tournament = await playoffRepository.find({where:{manager: Not(id)}})
+    const tournament = await playoffRepository.find({where:{manager: Not(id), status: true}})
     
     if(typeof(tournament)!== 'undefined'){
         
