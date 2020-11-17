@@ -3,7 +3,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { getRepository } from 'typeorm'
-import { Result } from '../protocols/IServices'
 import Round from '../../models/round/round'
 import CreateMatchService from '../match/createMatchService'
 

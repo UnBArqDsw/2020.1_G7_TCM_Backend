@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-console */
 /* eslint-disable no-restricted-syntax */
@@ -16,7 +17,7 @@ export class GenerationNextRound implements Service {
     const tournament = await tournamentRepository.findOne({
       where: id,
     })
-    const round_list = []
+    // const round_list = []
     if (tournament.status === true) {
       const round_list = tournament.rounds
       let tamanho = 0
