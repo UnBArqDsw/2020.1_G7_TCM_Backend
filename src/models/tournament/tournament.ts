@@ -63,7 +63,9 @@ class Tournaments {
   })
   rounds: Round[]
 
-  @ManyToOne(() => User, user => user.id)
+  @ManyToOne(() => User, user => user.id, {
+    eager: true,
+  })
   manager: User
 
   @Column()
