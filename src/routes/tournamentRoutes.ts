@@ -5,6 +5,8 @@ import { SearchSolitiationController } from '../controllers/solicitation/searchS
 import { CreateTournamentController } from '../controllers/tournament/createTournamentController'
 import { SearchTournamentController } from '../controllers/tournament/searchTournamentController'
 import userAuth from '../middlewares/userAuth'
+import { GenerationRoundController } from '../controllers/tournament/generateRoundController'
+import { GenerationNextRoundController } from '../controllers/tournament/generateNextRoundController'
 
 const tournamentRoutes = Router()
 
@@ -24,6 +26,24 @@ tournamentRoutes.post(
   async (request, response) => {
     const createSolicitation = new CreateSolitiationController()
     await createSolicitation.handle(request, response)
+  },
+)
+
+tournamentRoutes.post(
+  '/generationround/:id',
+  userAuth,
+  async (request, response) => {
+    const generateRound = new GenerationRoundController()
+    await generateRound.handle(request, response)
+  },
+)
+
+tournamentRoutes.post(
+  '/generationnextround/:id',
+  userAuth,
+  async (request, response) => {
+    const generateRound = new GenerationNextRoundController()
+    await generateRound.handle(request, response)
   },
 )
 

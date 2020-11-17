@@ -9,6 +9,7 @@ import Tournaments from '../../models/tournament/tournament'
 export class CreatePlayoffService implements Service {
   public async execute(request: Request): Promise<Result> {
     const manager: string = request.user.id
+
     const {
       name,
       description,
@@ -20,6 +21,7 @@ export class CreatePlayoffService implements Service {
       estado,
       cidade,
       endereco,
+      status,
     } = request.body
 
     const requiredFields = [
@@ -63,6 +65,7 @@ export class CreatePlayoffService implements Service {
       cidade,
       endereco,
       manager,
+      status,
     })
 
     try {

@@ -13,22 +13,28 @@ export class GetWinnersService {
     const winners = []
 
     let round = new Round()
-
     round = await roundRepository.findOne(round_id)
     const matchService = new PlayoffMatchService()
 
     try {
       for (const match in round.matchs_ids) {
         const result = await matchService.getMatch(round.matchs_ids[match])
+
+        if (result.winner === '') {
+          return {
+            body: [],
+            statusCode: 500,
+          }
+        }
         winners.push(result.winner)
       }
     } catch (error) {
       return {
-        body: { message: 'Erro ao buscar ganhadores do round.' },
+        body: [],
         statusCode: 500,
       }
     }
 
-    return { body: { winners }, statusCode: 200 }
+    return { body: winners, statusCode: 200 }
   }
 }

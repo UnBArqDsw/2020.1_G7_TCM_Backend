@@ -17,10 +17,10 @@ class Matchs {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
+  @Column({ nullable: true })
   status: string
 
-  @Column()
+  @Column({ nullable: true })
   local: string
 
   @OneToOne(() => User)
@@ -30,10 +30,6 @@ class Matchs {
   @OneToOne(() => Participants)
   @JoinColumn({ name: 'participant_winner_id' })
   participant_winner_id: Participants
-
-  // @ManyToOne(() => Round)
-  // @JoinColumn({ name: 'round_id' })
-  // round_id: Round
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'player1_id' })
@@ -51,7 +47,7 @@ class Matchs {
   @JoinColumn({ name: 'participant2_id' })
   participant2_id: Participants
 
-  @Column()
+  @Column({ nullable: true })
   score: string
 
   @CreateDateColumn()

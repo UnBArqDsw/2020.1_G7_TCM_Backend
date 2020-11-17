@@ -15,6 +15,7 @@ import Participant from '../participant/participant'
 import Solicitations from '../solicitations/solitications'
 
 import User from '../user/user'
+import Round from '../round/round'
 
 @Entity('tournaments')
 class Tournaments {
@@ -42,6 +43,9 @@ class Tournaments {
   @Column()
   end_date: Date
 
+  @Column({ default: false })
+  status: boolean
+
   @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
     nullable: true,
   })
@@ -49,26 +53,24 @@ class Tournaments {
 
   @OneToMany(() => Participant, participant => participant.tournaments, {
     nullable: true,
+    eager: true,
   })
   participants: Participant[]
 
+  @OneToMany(() => Round, round => round.tournaments, {
+    nullable: true,
+    eager: true,
+  })
+  rounds: Round[]
+
   @ManyToOne(() => User, user => user.id)
   manager: User
-
-  // @OneToMany(type => Solicitations, tournament => Tournaments, {
-  //   nullable: true,
-  //   eager: true,
-  // })
-  // solicitations: Solicitations[]
 
   @Column()
   estado: string
 
   @Column()
   cidade: string
-
-  @Column('varchar', { array: true, nullable: true })
-  rounds_ids: string[]
 
   @Column()
   endereco: string
