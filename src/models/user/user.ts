@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm'
+import Solicitations from '../solicitations/solitications'
 import Tournaments from '../tournament/tournament'
 
 @Entity('users')
@@ -16,6 +17,9 @@ class User {
 
   @OneToMany(() => Tournaments, tournaments => tournaments.manager)
   tournaments: Tournaments[]
+
+  @OneToMany(() => Solicitations, solicitations => solicitations.requester)
+  solicitations: Solicitations[]
 
   @Column()
   name: string

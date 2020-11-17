@@ -20,7 +20,7 @@ class AcceptSolicitationService implements Service {
     const { requester } = request.body
 
     const solicitationExists = await solicittionRepository.findOne({
-      where: { user: requester, tournaments: tournament },
+      where: { requester, tournaments: tournament },
     })
 
     if (!solicitationExists) {
