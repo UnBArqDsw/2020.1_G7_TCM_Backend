@@ -22,7 +22,7 @@ export default async function managerAuth(
     const manager = await tournamentRepository.findOne({
       where: { id: tournament_id, manager: id },
     })
-    console.log(manager)
+
     if (manager.manager.id === id) {
       return next()
     }
