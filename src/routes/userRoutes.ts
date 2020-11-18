@@ -1,8 +1,7 @@
 import { Router, Request, Response } from 'express'
 
 import { CreateUserController } from '../controllers/user/createUserController'
-import { SearchUserController } from '../controllers/user/searchUserController'
-import { searchMyParticipartionController } from '../controllers/user/searchMyParticipartionController'
+import { SearchMyParticipartionController } from '../controllers/user/searchMyParticipartionController'
 import userAuth from '../middlewares/userAuth'
 
 const userRoutes = Router()
@@ -21,9 +20,10 @@ userRoutes.post('/user', async (request: Request, response: Response) => {
 // )
 
 userRoutes.get(
-  '/user/tournaments',userAuth,
+  '/user/tournaments',
+  userAuth,
   async (request: Request, response: Response) => {
-    const SearchUser = new searchMyParticipartionController()
+    const SearchUser = new SearchMyParticipartionController()
     await SearchUser.handle(request, response)
   },
 )
