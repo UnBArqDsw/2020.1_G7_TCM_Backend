@@ -3,6 +3,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { getRepository } from 'typeorm'
+import AppError from '../../errors/appError'
 import Round from '../../models/round/round'
 import CreateMatchService from '../match/createMatchService'
 
@@ -47,7 +48,7 @@ export class CreateRoundService {
       round.matchs_ids = matchs_ids
       await roundRepository.save(round)
     } catch (error) {
-      console.log('error')
+      throw new AppError('Não foi possivel realizar a operação', 500)
     }
 
     return round
