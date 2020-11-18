@@ -7,27 +7,26 @@ export default async function managerAuth(
   request: Request,
   response: Response,
   next: NextFunction,
-): void {
-  try {
-    const { id } = request.user
+): Promise<void> {
+  const { id } = request.user
 
-    const tournament_id = request.params.id
+  const tournamentId = request.params.id
+    ? request.params.id
+    : request.params.tournament
 
-    if (!id) {
-      throw new AppError('id não encontrado', 401)
-    }
-
-    const tournamentRepository = getRepository(Tournaments)
-
-    const manager = await tournamentRepository.findOne({
-      where: { id: tournament_id, manager: id },
-    })
-
-    if (manager.manager.id === id) {
-      return next()
-    }
-    return next('/')
-  } catch {
-    throw new AppError('Você não é gerente deste torneio', 401)
+  if (!id) {
+    throw new AppError('id não encontrado', 401)
   }
+
+  const tournamentRepository = getRepository(Tournaments)
+
+  const manager = await tournamentRepository.findOne({
+    where: { id: tournamentId, manager: id },
+  })
+
+  if (!manager) {
+    throw new AppError('Você não é o gerente do torneio')
+  }
+
+  next()
 }
