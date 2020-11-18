@@ -28,7 +28,6 @@ export class GenerationRound implements Service {
 
     round_list.push(round)
     tournament.rounds = round_list
-    tournament.status = true
     await tournamentRepository.save(tournament)
 
     return { body: { round, players }, statusCode: 200 }
