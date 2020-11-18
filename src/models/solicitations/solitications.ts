@@ -24,6 +24,9 @@ class Solicitations {
   @ManyToOne(() => Tournaments, tournament => tournament.solicitations)
   tournaments: Tournaments
 
+  @Column({ default: false })
+  accepted: boolean
+
   // @ManyToOne(type => Tournaments, solicitations => Solicitations, {
   //   eager: true,
   // })
