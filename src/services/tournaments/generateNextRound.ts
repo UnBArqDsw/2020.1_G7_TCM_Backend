@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-console */
 /* eslint-disable no-restricted-syntax */
 import { Request } from 'express'
-import { getRepository, Any } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { Result, Service } from '../protocols/IServices'
 import Tournaments from '../../models/tournament/tournament'
 import { CreateRoundService } from '../round/createRoundService'
@@ -21,10 +23,10 @@ export class GenerationNextRound implements Service {
     if (tournament.status === true) {
       const round_list = tournament.rounds
       let tamanho = 0
-      for (const i in round_list) {
+      for (const _ in round_list) {
         tamanho += 1
       }
-      if (tamanho != 0) {
+      if (tamanho !== 0) {
         const ultimo_round = round_list[tamanho - 1]
         const getWinners = new GetWinnersService()
         const winners = await getWinners.execute(ultimo_round.id)
