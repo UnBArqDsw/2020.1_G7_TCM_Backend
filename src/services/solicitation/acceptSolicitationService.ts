@@ -27,6 +27,10 @@ class AcceptSolicitationService implements Service {
       throw new AppError('Solicitação não existente', 400)
     }
 
+    if (solicitationExists.accepted === true) {
+      throw new AppError('Solicitação já aceita', 400)
+    }
+
     const isManager = await tournamentRepository.findOne({
       where: { id: tournament, manager: id },
     })
@@ -43,7 +47,7 @@ class AcceptSolicitationService implements Service {
       throw new AppError('Usuário não existe', 400)
     }
 
-    const createParticipant = await participantRepository.create({
+    const createParticipant = participantRepository.create({
       players: requester,
       status: true,
       tournaments: tournament,
@@ -56,6 +60,9 @@ class AcceptSolicitationService implements Service {
       throw new AppError(err, 400)
     }
 
+    solicitationExists.accepted = true
+
+    await solicittionRepository.save(solicitationExists)
     return {
       body: {
         id,
