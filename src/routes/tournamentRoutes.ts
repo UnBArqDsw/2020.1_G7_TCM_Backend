@@ -8,7 +8,7 @@ import userAuth from '../middlewares/userAuth'
 import { GenerationRoundController } from '../controllers/tournament/generateRoundController'
 import { GenerationNextRoundController } from '../controllers/tournament/generateNextRoundController'
 import { SearchFeedTournamentController } from '../controllers/tournament/searchFeedTournamentController'
-
+import managerAuth from '../middlewares/managerAuth'
 
 const tournamentRoutes = Router()
 
@@ -17,10 +17,14 @@ tournamentRoutes.get('/tournament', userAuth, async (request, response) => {
   await tournament.handle(request, response)
 })
 
-tournamentRoutes.get('/tournament/feed', userAuth, async (request, response) => {
-  const tournament = new SearchFeedTournamentController()
-  await tournament.handle(request, response)
-})
+tournamentRoutes.get(
+  '/tournament/feed',
+  userAuth,
+  async (request, response) => {
+    const tournament = new SearchFeedTournamentController()
+    await tournament.handle(request, response)
+  },
+)
 
 tournamentRoutes.post('/tournament', userAuth, async (request, response) => {
   const createTournament = new CreateTournamentController()
@@ -39,6 +43,7 @@ tournamentRoutes.post(
 tournamentRoutes.post(
   '/generationround/:id',
   userAuth,
+  managerAuth,
   async (request, response) => {
     const generateRound = new GenerationRoundController()
     await generateRound.handle(request, response)
@@ -48,6 +53,7 @@ tournamentRoutes.post(
 tournamentRoutes.post(
   '/generationnextround/:id',
   userAuth,
+  managerAuth,
   async (request, response) => {
     const generateRound = new GenerationNextRoundController()
     await generateRound.handle(request, response)
@@ -57,6 +63,7 @@ tournamentRoutes.post(
 tournamentRoutes.get(
   '/solicitation/:tournament',
   userAuth,
+  managerAuth,
   async (request, response) => {
     const searchSolicitation = new SearchSolitiationController()
     await searchSolicitation.handle(request, response)
@@ -66,6 +73,7 @@ tournamentRoutes.get(
 tournamentRoutes.post(
   '/accept/:tournament',
   userAuth,
+  managerAuth,
   async (request, response) => {
     const acceptSolicitation = new AcceptSolitiationController()
     await acceptSolicitation.handle(request, response)
