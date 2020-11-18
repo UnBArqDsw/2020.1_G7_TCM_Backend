@@ -21,9 +21,9 @@ export class CreatePlayoffService implements Service {
       estado,
       cidade,
       endereco,
-      status,
     } = request.body
 
+    const status = true
     const requiredFields = [
       'name',
       'description',

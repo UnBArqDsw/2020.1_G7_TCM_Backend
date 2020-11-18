@@ -1,20 +1,15 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
-import { Request } from 'express'
-import { getRepository, Not } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { Result, Service } from '../protocols/IServices'
 import Tournaments from '../../models/tournament/tournament'
 
 export class FeedAllTournamentsService implements Service {
-  public async execute(request: Request): Promise<Result> {
-    const { id } = request.user
-
+  public async execute(): Promise<Result> {
     const playoffRepository = getRepository(Tournaments)
 
-    const tournament = await playoffRepository.find({
-      where: { manager: Not(id), status: true },
-    })
+    const tournament = await playoffRepository.find({ where: { status: true } })
 
     if (typeof tournament !== 'undefined') {
       for (const t in tournament) {
