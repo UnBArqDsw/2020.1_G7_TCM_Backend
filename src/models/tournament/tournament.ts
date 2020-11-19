@@ -48,6 +48,7 @@ class Tournaments {
 
   @OneToMany(() => Solicitations, solicitation => solicitation.tournaments, {
     nullable: true,
+    eager: true,
   })
   solicitations: Solicitations[]
 

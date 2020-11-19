@@ -18,7 +18,7 @@ class Solicitations {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @ManyToOne(() => User, user => user.id)
+  @ManyToOne(() => User, user => user.id, { eager: true })
   requester: User
 
   @ManyToOne(() => Tournaments, tournament => tournament.solicitations)
