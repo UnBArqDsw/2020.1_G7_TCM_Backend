@@ -11,7 +11,7 @@ userRoutes.post('/user', async (request: Request, response: Response) => {
   const createUser = new CreateUserController()
   await createUser.handle(request, response)
 })
-userRoutes.get('/user/:id', async (request: Request, response: Response) => {
+userRoutes.get('/users/:id', async (request: Request, response: Response) => {
   const SearchUser = new SearchUserController()
   await SearchUser.handle(request, response)
 })
