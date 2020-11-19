@@ -22,7 +22,6 @@ class SearchAcceptedSolicitationService implements Service {
       for (const t in solicitation) {
         delete solicitation[t].id
         delete solicitation[t].accepted
-        delete solicitation[t].tournaments.manager
       }
 
       return {
