@@ -6,15 +6,17 @@ import { Result, Service } from '../protocols/IServices'
 
 class SearchByNicknameService implements Service {
   public async execute(request: Request): Promise<Result> {
-    const { nickname } = request.params
+    const { id } = request.params
     const userRepository = getRepository(User)
-    const user = await userRepository.findOne({ where: { nickname } })
+    const user = await userRepository.findOne({
+      where: { id },
+      select: ['name'],
+    })
     if (!user) {
       throw new AppError('User not found', 400)
     }
-    const { name, id } = user
     return {
-      body: { id, name, nickname: user.nickname },
+      body: { user },
       statusCode: 200,
     }
   }
