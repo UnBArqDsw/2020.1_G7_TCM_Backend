@@ -9,11 +9,9 @@ import Solicitations from '../../models/solicitations/solitications'
 class SearchAcceptedSolicitationService implements Service {
   public async execute(request: Request): Promise<Result> {
     const { id } = request.user
-    const s = new Solicitations()
 
     try {
       const solicitationRepository = getRepository(Solicitations)
-      await solicitationRepository.save(s)
       const solicitation = await solicitationRepository.find({
         where: { requester: id, accepted: true },
         relations: ['tournaments'],
