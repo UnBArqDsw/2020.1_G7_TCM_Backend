@@ -24,6 +24,7 @@ class CreateFriendlyMatchService implements Service {
 
       const create = await matchRepository.create(match)
       await matchRepository.save(create)
+      match.id = create.id
       delete match.player1_id.password
       delete match.player1_id.created_at
       delete match.player2_id.created_at
