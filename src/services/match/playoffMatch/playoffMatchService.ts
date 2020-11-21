@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm'
 import { ServiceMatch } from '../template/match'
 import { ResultMatch, PostResult } from '../template/interfaces'
 import Participant from '../../../models/participant/participant'
+import User from '../../../models/user/user'
 
 class PlayoffMatchService extends ServiceMatch {
   public async getMatch(id: string): Promise<ResultMatch> {
@@ -12,14 +13,19 @@ class PlayoffMatchService extends ServiceMatch {
         'participant_winner_id',
       ],
     })
+
+    const userRepository = getRepository(User)
+
     if (typeof match !== 'undefined') {
+      const name = await userRepository.findOne(match.participant1_id.players)
       const participant1 = {
         id: match.participant1_id.id,
-        name: match.participant2_id.players,
+        name: name.name,
       }
+      const name2 = await userRepository.findOne(match.participant2_id.players)
       const participant2 = {
         id: match.participant2_id.id,
-        name: match.participant2_id.players,
+        name: name2.name,
       }
 
       return {
