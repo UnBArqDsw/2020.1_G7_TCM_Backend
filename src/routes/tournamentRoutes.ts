@@ -9,8 +9,18 @@ import { GenerationRoundController } from '../controllers/tournament/generateRou
 import { GenerationNextRoundController } from '../controllers/tournament/generateNextRoundController'
 import { SearchFeedTournamentController } from '../controllers/tournament/searchFeedTournamentController'
 import managerAuth from '../middlewares/managerAuth'
+import { GetTournamentByIdController } from '../controllers/tournament/getTournamentByIdController'
 
 const tournamentRoutes = Router()
+
+tournamentRoutes.get(
+  '/tournaments/:tournamentId',
+  userAuth,
+  async (request, response) => {
+    const tournament = new GetTournamentByIdController()
+    await tournament.handle(request, response)
+  },
+)
 
 tournamentRoutes.get('/tournament', userAuth, async (request, response) => {
   const tournament = new SearchTournamentController()
