@@ -15,6 +15,7 @@ export class GenerationRound implements Service {
     const tournament = await tournamentRepository.findOne({
       where: id,
     })
+
     const players = tournament.participants
 
     const player_id = []

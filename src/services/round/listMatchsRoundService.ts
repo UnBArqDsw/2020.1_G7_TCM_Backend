@@ -17,20 +17,18 @@ export class ListMatchsInRoundService {
 
     round = await roundRepository.findOne(round_id)
     const matchService = new PlayoffMatchService()
-    let matchs_list = []
+    const matchs_list = []
 
     try {
       for (const match in round.matchs_ids) {
         const result = await matchService.getMatch(round.matchs_ids[match])
         matchs_list.push(result)
       }
-    const matchRepository = getRepository(Matchs)
+      const matchRepository = getRepository(Matchs)
 
-    if(matchs_info_list.length != 0){
-      matchs_info_list = await matchRepository.findByIds(matchs_list)
-    }
-    console.log("partidas em round: ",matchs_info_list)
-
+      if (matchs_info_list.length !== 0) {
+        matchs_info_list = await matchRepository.findByIds(matchs_list)
+      }
     } catch (error) {
       return {
         body: { message: 'erro ao buscar partidas do round' },
@@ -38,6 +36,9 @@ export class ListMatchsInRoundService {
       }
     }
 
-    return { body: { matchs_list, matchs_info: matchs_info_list}, statusCode: 200 }
+    return {
+      body: { matchs_list, matchs_info: matchs_info_list },
+      statusCode: 200,
+    }
   }
 }

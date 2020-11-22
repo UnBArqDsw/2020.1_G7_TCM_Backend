@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-shadow */
-/* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-console */
 /* eslint-disable no-restricted-syntax */
@@ -19,18 +17,18 @@ export class GenerationNextRound implements Service {
     const tournament = await tournamentRepository.findOne({
       where: id,
     })
-    // const round_list = []
+
     if (tournament.status === true) {
       const round_list = tournament.rounds
       let tamanho = 0
-      for (const _ in round_list) {
+      for (const i in round_list) {
         tamanho += 1
       }
       if (tamanho !== 0) {
         const ultimo_round = round_list[tamanho - 1]
         const getWinners = new GetWinnersService()
-        const winners = await getWinners.execute(ultimo_round.id)
 
+        const winners = await getWinners.execute(ultimo_round.id)
         if (winners.body.length === 0) {
           return {
             body: { message: 'Ainda existe partidas sem ganhadores' },
@@ -46,13 +44,11 @@ export class GenerationNextRound implements Service {
           }
         }
         const createRound = new CreateRoundService()
-        const round_list = tournament.rounds
+        const round = await createRound.execute(name, true, winners.body)
 
         round_list.push(round)
         tournament.rounds = round_list
         await tournamentRepository.save(tournament)
-
-        const round = await createRound.execute(name, true, winners.body)
         return { body: round, statusCode: 200 }
       }
     }

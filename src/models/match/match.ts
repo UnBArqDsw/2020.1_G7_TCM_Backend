@@ -5,12 +5,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
 } from 'typeorm'
-
-import User from '../user/user'
-import Participants from '../participant/participant'
 
 @Entity('matchs')
 class Matchs {
@@ -23,29 +18,23 @@ class Matchs {
   @Column({ nullable: true })
   local: string
 
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'user_winner_id' })
-  user_winner_id: User
+  @Column({ type: 'varchar', nullable: true })
+  user_winner_id: string
 
-  @OneToOne(() => Participants)
-  @JoinColumn({ name: 'participant_winner_id' })
-  participant_winner_id: Participants
+  @Column({ type: 'varchar', nullable: true })
+  participant_winner_id: string
 
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'player1_id' })
-  player1_id: User
+  @Column({ type: 'varchar', nullable: true })
+  player1_id: string
 
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'player2_id' })
-  player2_id: User
+  @Column({ type: 'varchar', nullable: true })
+  player2_id: string
 
-  @OneToOne(() => Participants)
-  @JoinColumn({ name: 'participant1_id' })
-  participant1_id: Participants
+  @Column({ type: 'varchar', nullable: true })
+  participant1_id: string
 
-  @OneToOne(() => Participants)
-  @JoinColumn({ name: 'participant2_id' })
-  participant2_id: Participants
+  @Column({ type: 'varchar', nullable: true })
+  participant2_id: string
 
   @Column({ nullable: true })
   score: string

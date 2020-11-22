@@ -27,8 +27,8 @@ class CreateMatchService {
       player_2 = player2_aux
 
       const match_aux = new Matchs()
-      match_aux.participant1_id = player_1
-      match_aux.participant2_id = player_2
+      match_aux.participant1_id = player_1.id
+      match_aux.participant2_id = player_2.id
       match_aux.status = 'C'
 
       const matchRepository = getRepository(Matchs)

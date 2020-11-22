@@ -6,26 +6,33 @@ import User from '../../../models/user/user'
 
 class PlayoffMatchService extends ServiceMatch {
   public async getMatch(id: string): Promise<ResultMatch> {
-    const match = await this.matchRepository.findOne(id, {
-      relations: [
-        'participant1_id',
-        'participant2_id',
-        'participant_winner_id',
-      ],
-    })
+    const match = await this.matchRepository.findOne(id)
 
     const userRepository = getRepository(User)
+    const partcipantRepository = getRepository(Participant)
 
     if (typeof match !== 'undefined') {
-      const name = await userRepository.findOne(match.participant1_id.players)
+      const participant1_id = await partcipantRepository.findOne({
+        where: { id: match.participant1_id },
+      })
+
+      const name = await userRepository.findOne({
+        where: { id: participant1_id?.players },
+      })
       const participant1 = {
-        id: match.participant1_id.id,
-        name: name.name,
+        id: participant1_id,
+        name: name?.name,
       }
-      const name2 = await userRepository.findOne(match.participant2_id.players)
+      const participant2_id = await partcipantRepository.findOne({
+        where: { id: match.participant2_id },
+      })
+
+      const name2 = await userRepository.findOne({
+        where: { id: participant2_id?.players },
+      })
       const participant2 = {
-        id: match.participant2_id.id,
-        name: name2.name,
+        id: participant2_id,
+        name: name2?.name,
       }
 
       return {
@@ -37,7 +44,7 @@ class PlayoffMatchService extends ServiceMatch {
         winner:
           match.participant_winner_id == null
             ? ''
-            : String(match.participant_winner_id.id),
+            : match.participant_winner_id,
         statusCode: 200,
       }
     }
@@ -58,7 +65,7 @@ class PlayoffMatchService extends ServiceMatch {
 
     if (typeof match !== 'undefined' && typeof participant !== 'undefined') {
       match.score = score
-      match.participant_winner_id = participant
+      match.participant_winner_id = participant.id
       match.status = 'F'
 
       try {
